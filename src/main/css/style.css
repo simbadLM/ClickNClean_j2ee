@@ -1,0 +1,23 @@
+.root{
+    -fx-background: rgb(22, 22, 22);
+}
+
+.button{
+    -fx-text-fill: rgb(5, 10, 50);
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+/*    -fx-background-color: linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%);*/
+    -fx-background: rgb(100, 100, 100);
+}
+.list-cell {
+    -fx-background: rgb(22, 22, 22);
+    -fx-text-fill: white; /* 5 */
+}
+/*.list-cell:odd { -fx-background-color: white; /* 1 */ }*/
+/*.list-cell:even { -fx-background-color: #8f8; /* for information */ }*/
+.list-cell:filled:hover { 
+    -fx-background: rgb(54, 54, 54); /* 2 */
+/*    -fx-text-fill: white; /* 5 */*/
+}
