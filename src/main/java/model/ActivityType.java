@@ -1,4 +1,6 @@
-package models;
+package model;
+
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 public enum ActivityType {
     WELCOME_CLEANER(1), // for cleaner DONE

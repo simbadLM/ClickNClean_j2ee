@@ -1,4 +1,4 @@
-package models.planning;
+package model.planning;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

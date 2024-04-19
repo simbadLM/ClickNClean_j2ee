@@ -1,9 +1,9 @@
-package models;
+package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import models.planning.Planning;
+import model.planning.Planning;
 import tools.Db;
 
 public class Cleaner extends User {

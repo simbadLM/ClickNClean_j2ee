@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public enum UserStatus {
 	ADMIN(1),

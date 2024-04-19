@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public enum CleanerExperience {
     NONE(1),

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
-import models.UserStatus;
+import model.UserStatus;
 
 public class Page {
     public static String url;

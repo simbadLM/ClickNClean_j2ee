@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public class Property {
 	private int propertyId;
@@ -70,8 +70,8 @@ public class Property {
 	@Override
 	public String toString() {
 		return "Property [propertyId=" + propertyId + ", propertyAddress=" + propertyAddress + ", propertySurface="
-		       + propertySurface + ", ownerId=" + ownerId + ", accesCode=" + accesCode + ", keyBoxCode=" + keyBoxCode
-		       + ", specialInstruction=" + specialInstruction + "]";
+				+ propertySurface + ", ownerId=" + ownerId + ", accesCode=" + accesCode + ", keyBoxCode=" + keyBoxCode
+				+ ", specialInstruction=" + specialInstruction + "]";
 	}
-
+	
 }

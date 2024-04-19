@@ -15,24 +15,25 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import org.javatuples.Pair;
-import models.Activity;
-import models.ActivityType;
-import models.Address;
-import models.Admin;
-import models.Cleaner;
-import models.CleanerExperience;
-import models.Dispute;
-import models.DisputeType;
-import models.Mission;
-import models.MissionStatus;
-import models.Owner;
-import models.OwnerMotivation;
-import models.Property;
-import models.Review;
-import models.User;
-import models.UserStatus;
-import models.planning.Planning;
-import models.planning.TimeSlot;
+
+import model.Activity;
+import model.ActivityType;
+import model.Address;
+import model.Admin;
+import model.Cleaner;
+import model.CleanerExperience;
+import model.Dispute;
+import model.DisputeType;
+import model.Mission;
+import model.MissionStatus;
+import model.Owner;
+import model.OwnerMotivation;
+import model.Property;
+import model.Review;
+import model.User;
+import model.UserStatus;
+import model.planning.Planning;
+import model.planning.TimeSlot;
 
 public class Db {
 	String strClassName;

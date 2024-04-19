@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
-import models.UserStatus;
+import model.UserStatus;
 
 public class Header {
     public static String Render(HttpServletResponse response, UserStatus status) throws IOException {
@@ -13,54 +13,58 @@ public class Header {
         boolean connected = false;
 
         switch (status) {
-        case CLEANER : {
-            headerId = "cleaner";
-            connected = true;
-        }
-        case OWNER : {
-            headerId = "owner";
-            connected = true;
-        }
-        case ADMIN: {
-            headerId = "admin";
-            connected = true;
-        }
+            case CLEANER : 
+                {
+                    headerId = "cleaner";
+                    connected = true;
+                }
+            case OWNER : 
+                {
+                    headerId = "owner";
+                    connected = true;
+                }
+            case ADMIN: 
+                {
+                    headerId = "admin";
+                    connected = true;
+                }
 
-        case UNKNOWN: {
-            break;
-        }
+            case UNKNOWN:
+                {
+                    break;
+                }
 
-
+            
         }
         if (connected == true ) {
-            return (
-                       "<header>"
-                       + " <div id='" + headerId + "'>"
-                       + "     <ul>"
-                       + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                       + "         <li></li>"
-                       + "         <li></li>"
-                       + "         <li id = 'logo2><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                       + "     </ul>"
-                       + " </div>"
-                       + "</header>"
-                   );
+            return(
+                "<header>"
+                + " <div id='" + headerId + "'>"
+                + "     <ul>"
+                + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                + "         <li></li>"
+                + "         <li></li>"
+                + "         <li id = 'logo2><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                + "     </ul>"
+                + " </div>"
+                + "</header>"
+            );
         }
 
         else {
-            return (
-                       "<header>"
-                       + " <div id='" + headerId + "'>"
-                       + "     <ul>"
-                       + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                       + "         <li></li>"
-                       + "         <li></li>"
-                       + "         <li id = 'logo2><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                       + "     </ul>"
-                       + " </div>"
-                       + "</header>"
-                   );
+            return(
+                "<header>"
+                + " <div id='" + headerId + "'>"
+                + "     <ul>"
+                + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                + "         <li></li>"
+                + "         <li></li>"
+                + "         <li id = 'logo2><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                + "     </ul>"
+                + " </div>"
+                + "</header>"
+            );
         }
-
+        
     }
 }
