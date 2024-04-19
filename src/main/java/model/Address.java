@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
@@ -11,7 +12,6 @@ import java.util.function.Supplier;
 import tools.JsonBodyHandler;
 import tools.APOD;
 import java.lang.Throwable;
-import java.net.http.HttpResponse;
 
 public class Address {
     String display;
@@ -27,15 +27,15 @@ public class Address {
         System.out.println("Querying adress: " + query);
         // create a request
         HttpRequest request = HttpRequest.newBuilder(
-                                  URI.create("https://api-adresse.data.gouv.fr/search/?q=" + query))
-                              .header("accept", "application/json")
-                              .build();
+                          URI.create("https://api-adresse.data.gouv.fr/search/?q=" + query))
+                      .header("accept", "application/json")
+                      .build();
 
         // use the client to send the request
-        CompletableFuture<HttpResponse<Supplier<tools.APOD>>> responseFuture = client.sendAsync(request, new JsonBodyHandler<>(APOD.class));
+        CompletableFuture<HttpResponse<Supplier<APOD>>> responseFuture = client.sendAsync(request, new JsonBodyHandler<>(APOD.class));
 
         // This blocks until the request is complete
-        HttpResponse<Supplier<tools.APOD>> response = responseFuture.get();
+        HttpResponse<Supplier<APOD>> response = responseFuture.get();
 
         if (response.statusCode() != 200) {
             System.out.println("Error: " + response.statusCode());

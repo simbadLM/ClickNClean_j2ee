@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
 public enum ActivityType {
     WELCOME_CLEANER(1), // for cleaner DONE
     CLEANER_WAITING_TO_BE_CONFIRMED(2), // for admin DONE

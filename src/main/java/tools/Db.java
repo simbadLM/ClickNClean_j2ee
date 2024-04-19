@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import org.javatuples.Pair;
+
 import model.Activity;
 import model.ActivityType;
 import model.Address;
