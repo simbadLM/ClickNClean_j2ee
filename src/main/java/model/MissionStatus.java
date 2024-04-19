@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public enum MissionStatus {
     PUBLISHED(1),

@@ -1,4 +1,4 @@
-package models.planning;
+package model.planning;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

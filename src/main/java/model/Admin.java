@@ -1,4 +1,4 @@
-package models;
+package model;
 
 import java.util.ArrayList;
 import tools.Db;
@@ -23,7 +23,7 @@ public class Admin extends User {
         this.adminId = adminId;
     }
 
-
+    
 
     // -------------------------------------------------------------------------------------------------------------------------
     // Searching features

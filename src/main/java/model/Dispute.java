@@ -1,20 +1,20 @@
-package models;
+package model;
 
 public class Dispute {
-    private int disputeId;
+    private int disputeId;	
     private String content;
     private String decision;
     private String ownerDisplay;
-    private String cleanerDisplay;
+    private String cleanerDisplay;		
     private int ownerId;
-    private int cleanerId;
-    private int missionId;
-    private int disputeCreatorId;
+    private int cleanerId;	
+    private int missionId;	
+    private int disputeCreatorId;	
     private int adminId;
     private DisputeType type;
-
+    
     public Dispute(int disputeId, String content, String decision, String ownerDisplay, String cleanerDisplay,
-                   int ownerId, int cleanerId, int missionId, int disputeCreatorId, int adminId, DisputeType type) {
+            int ownerId, int cleanerId, int missionId, int disputeCreatorId, int adminId, DisputeType type) {
 
         this.disputeId = disputeId;
         this.content = content;
@@ -64,11 +64,11 @@ public class Dispute {
     @Override
     public String toString() {
         return "Dispute [disputeId=" + disputeId + ", content=" + content + ", decision=" + decision + ", ownerDisplay="
-               + ownerDisplay + ", cleanerDisplay=" + cleanerDisplay + ", ownerId=" + ownerId + ", cleanerId="
-               + cleanerId + ", missionId=" + missionId + ", disputeCreatorId=" + disputeCreatorId + ", adminId="
-               + adminId + "]";
+                + ownerDisplay + ", cleanerDisplay=" + cleanerDisplay + ", ownerId=" + ownerId + ", cleanerId="
+                + cleanerId + ", missionId=" + missionId + ", disputeCreatorId=" + disputeCreatorId + ", adminId="
+                + adminId + "]";
     }
 
-
-
+    
+    
 }

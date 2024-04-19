@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public enum OwnerMotivation {
     MAIN_HOME(1),

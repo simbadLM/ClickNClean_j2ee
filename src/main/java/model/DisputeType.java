@@ -1,10 +1,10 @@
-package models;
+package model;
 
 public enum DisputeType {
     NO_TYPE(0),
     CLEANER_WINS(1),
     OWNER_WINS(2);
-
+    
 
     private Integer type;
 
@@ -14,8 +14,8 @@ public enum DisputeType {
 
     public static DisputeType fromInt(Integer type) throws Exception {
         switch (type) {
-
-        case 0 :
+        
+        case 0 : 
             return DisputeType.NO_TYPE;
         case 1:
             return DisputeType.CLEANER_WINS;
