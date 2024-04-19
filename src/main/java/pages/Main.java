@@ -20,6 +20,6 @@ public class Main extends HttpServlet {
         System.out.println("Main requested !");
         response.setContentType("text/html;charset=UTF-8");
         // response.getWriter().println("<h1>Hello, from Main view</h1>");
-        response.sendRedirect("/click_n_clean_j2ee/accueil");
+        response.sendRedirect("/clickNclean_j2ee/accueil");
     }
 }
