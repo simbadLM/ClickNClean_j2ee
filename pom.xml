@@ -19,59 +19,46 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <tomcat7-version>7.0.93</tomcat7-version>
   </properties>
-
-
   <dependencies>
-
-
-  <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.16.1</version>
-  </dependency>
-
-  <dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.16.1</version>
+    </dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
-
-   <dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>5.8.2</version>
       <scope>test</scope>
-   </dependency>
-
-
-   <dependency>
+    </dependency>
+    <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.5.14</version>
-   </dependency>
-
-   <dependency>
+    </dependency>
+    <dependency>
       <groupId>org.apache</groupId>
       <artifactId>apache</artifactId>
       <version>31</version>
       <type>pom</type>
-  </dependency>
-
-  <dependency>
+    </dependency>
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.33</version>
-  </dependency>
-
-  <dependency>
-    <groupId>org.javatuples</groupId>
-    <artifactId>javatuples</artifactId>
-    <version>1.2</version>
-  </dependency>
-
+    </dependency>
+    <dependency>
+      <groupId>org.javatuples</groupId>
+      <artifactId>javatuples</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
-
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
