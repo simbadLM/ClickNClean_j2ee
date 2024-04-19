@@ -1,0 +1,53 @@
+html * {
+    width: 100%;
+    height: 100%;
+    padding: 0%
+}
+
+#cleaner, #invite {
+    background-color: #42AF8C;
+    width: 100%;
+    height:100%;
+}
+
+#invite {
+    background-image: url("./banner_uk.png");
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height:100%;
+}
+
+#owner {
+    background-color: #11C0DE;
+    width: 100%;
+    height:100%;
+}
+
+#logo {
+    width: 30%;
+    display: inline;
+    margin: 0%;
+}
+
+ul {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+li {
+    list-style-type: none;
+    object-fit: 100%;
+    height: 100%;
+    width: 100%
+}
+
+#logo1 {
+    margin-left: 2%;
+}
+
+
+#logo2 {
+    margin-right: 2%;
+}
