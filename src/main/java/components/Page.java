@@ -8,6 +8,7 @@ import model.UserStatus;
 
 public class Page {
     public static String url;
+    public static UserStatus sessionHost;
 
     public static void TopPage(HttpServletResponse response, String url) throws IOException {
         PrintWriter out = response.getWriter();
@@ -20,7 +21,7 @@ public class Page {
             +    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
             +        "<title> " + url + "</title>"
             + "</head>"
-            + "<body>" + Header.Render(response, UserStatus.UNKNOWN)
+            + "<body>" + Header.Render(response, UserStatus.OWNER)
         );
     }
 

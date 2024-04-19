@@ -4,8 +4,26 @@ html * {
     padding: 0%
 }
 
-#cleaner, #invite {
-    background-color: #42AF8C;
+#cleaner {
+    background-image: url("./banner_cleaner.png");
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height:100%;
+}
+
+#owner {
+    background-image: url("./banner_owner.png");
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height:100%;
+}
+
+#admin {
+    background-image: url("./banner_admin.png");
+    object-fit: fill;
+    background-size: 100%;
     width: 100%;
     height:100%;
 }

@@ -9,7 +9,7 @@ import model.UserStatus;
 public class Header {
     public static String Render(HttpServletResponse response, UserStatus status) throws IOException {
         PrintWriter out = response.getWriter();
-        String headerId = "invite";
+        String headerId = "";
         boolean connected = false;
 
         switch (status) {
@@ -17,21 +17,24 @@ public class Header {
                 {
                     headerId = "cleaner";
                     connected = true;
+                    break;
                 }
             case OWNER : 
                 {
                     headerId = "owner";
                     connected = true;
+                    break;
                 }
             case ADMIN: 
                 {
                     headerId = "admin";
                     connected = true;
+                    break;
                 }
 
             case UNKNOWN:
                 {
-                    break;
+                    headerId = "invite";
                 }
 
             
