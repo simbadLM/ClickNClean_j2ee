@@ -12,7 +12,12 @@ public class Page {
     public static String url;
     public static UserStatus sessionHost;
 
-    public static void TopPage(HttpServletRequest request, HttpServletResponse response, String url) throws IOException {
+    public static void TopPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String title = "";
+        response.setContentType("text/html;charset=UTF-8");
+        if (request.getPathInfo() != null) {
+            title = request.getPathInfo().replace("/", "");
+        }
         PrintWriter out = response.getWriter();
         out.println(
             "<!DOCTYPE html>"
@@ -21,7 +26,7 @@ public class Page {
             +    "<link rel='stylesheet' href='./resources/style.css'>"
             +    "<meta charset='UTF-8'>"
             +    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
-            +        "<title> " + url + "</title>"
+            +        "<title> " + title + "</title>"
             + "</head>"
             + "<body>" + Header.Render(request, response)
         );

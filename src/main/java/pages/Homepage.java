@@ -1,12 +1,5 @@
 package pages;
 
-import static j2html.TagCreator.*;
-import static j2html.TagCreator.html;
-import static j2html.TagCreator.label;
-import static j2html.TagCreator.label;
-import j2html.tags.ContainerTag;
-import j2html.tags.Text;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -22,6 +15,12 @@ import model.UserStatus;
 
 @WebServlet(name = "Homepage", urlPatterns = {"/accueil"})
 public class Homepage extends HttpServlet {
+    boolean redirected; 
+
+    String renderRedirectMessage(HttpSession currentSession, boolean redirected) {
+        currentSession.setAttribute("connection", "");
+        return ((redirected) ? "<p class=\"alert\">Identifiant ou mot de passe incorrect</p>" : "");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,21 +29,19 @@ public class Homepage extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("status", UserStatus.UNKNOWN.toString());
-            
-    
-        String title = " ";
-        response.setContentType("text/html;charset=UTF-8");
-        if (request.getPathInfo() != null) {
-            title = request.getPathInfo().replace("/", "");
-        }
+
+        if (session.getAttribute("connection") != null && session.getAttribute("connection").equals("failed")) redirected = true;
+
+       
         PrintWriter out = response.getWriter();
-        Page.TopPage(request, response, title);
+        Page.TopPage(request, response);
         out.println(
             "<div id='connectionForm'>"
             +   "<h1>Connexion</h1>"
+                 + renderRedirectMessage(session, redirected) 
             +   "<form method='post' action='http://localhost:9090/clickNclean_j2ee/login'>"
-            +       "<input class='connectionField' type='text' placeholder='E-mail'>"
-            +       "<input class='connectionField' type='text' placeholder='Mot de passe'>"
+            +       "<input class='connectionField' type='text' name='email' placeholder='E-mail' required>"
+            +       "<input class='connectionField' type='password' name='password' placeholder='Mot de passe' required>"
             +       "<input id='button' type='submit' value='JE ME CONNECTE'>"
             +   "</form>"
             +"</div>"
