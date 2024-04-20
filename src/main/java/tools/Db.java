@@ -48,12 +48,19 @@ public class Db {
 		this.strClassName = "com.mysql.cj.jdbc.Driver";
 		this.dbName = "click_n_clean";
 
+
 		this.login = "root";
-		this.password = "";
+		this.password = "root";
+
+		/* MACOS BASED SERVER : UNCOMMENT PORT 8889 (MAMP) ⬇*/
+		this.strUrl = "jdbc:mysql://localhost:8889/" + dbName
+		              + "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Paris";
+		
+		/* WINDOWS BASED SERVER : UNCOMMENT PORT 3306 ⬇ 	
 
 		this.strUrl = "jdbc:mysql://localhost:3306/" + dbName
 		              + "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Paris";
-
+		*/
 		try {
 			Class.forName(strClassName);
 			this.conn = DriverManager.getConnection(strUrl, login, password);
