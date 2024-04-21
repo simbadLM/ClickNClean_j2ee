@@ -34,9 +34,10 @@ public class Homepage extends HttpServlet {
 
        
         PrintWriter out = response.getWriter();
-        Page.TopPage(request, response);
+        
         out.println(
-            "<div id='connectionForm'>"
+            Page.TopPage(request, response) 
+            + "<div id='connectionForm'>"
             +   "<h1>Connexion</h1>"
                  + renderRedirectMessage(session, redirected) 
             +   "<form method='post' action='http://localhost:9090/clickNclean_j2ee/login'>"
@@ -45,7 +46,8 @@ public class Homepage extends HttpServlet {
             +       "<input id='button' type='submit' value='JE ME CONNECTE'>"
             +   "</form>"
             +"</div>"
+            +Page.BottomPage(response)
         );
-        Page.BottomPage(response);
+  
     }
 }
