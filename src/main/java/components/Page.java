@@ -1,13 +1,16 @@
 package components;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.CleanerExperience;
+import model.OwnerMotivation;
 import model.UserStatus;
+
+/*--------------------------------------⬇-Basic components-⬇----------------------------------------*/
+
 
 public class Page {
     public static String url;
@@ -19,10 +22,13 @@ public class Page {
         if (request.getPathInfo() != null) {
             title = request.getPathInfo().replace("/", "");
         }
+
+
         return(
             "<!DOCTYPE html>"
             + "<html lang='fr'>"
             + "<head>"
+            +    "<script src='./functions.js'></script>"
             +    "<link rel='stylesheet' href='./resources/style.css'>"
             +    "<meta charset='UTF-8'>"
             +    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
@@ -64,36 +70,17 @@ public class Page {
             default:
                     headerId = "invite";
         }
-        if (connected) {
-            return(
-                "<header>"
-                + " <div id='" + headerId + "'>"
-                + "     <ul>"
-                + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                + "         <li></li>"
-                + "         <li></li>"
-                + "         <li id = 'logo2'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                + "     </ul>"
-                + " </div>"
-                + "</header>"
-            );
-        }
-        else {
-            return(
-                "<header>"
-                + " <div id='" + headerId + "'>"
-                + "     <ul>"
-                + "         <li id = 'logo1'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                + "         <li></li>"
-                + "         <li></li>"
-                + "         <li id = 'logo2'><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                + "     </ul>"
-                + " </div>"
-                + "</header>"
-            );
-        }
+        return(
+            "<header>"
+            + " <div id='" + headerId + "'>"
+            + "     <ul>"
+            + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+            + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
+            + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
+            + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+            + "     </ul>"
+            + " </div>"
+            + "</header>"
+        );
     }
-
-
-    
 }
