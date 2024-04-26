@@ -1,4 +1,4 @@
-package pages.admin;
+package view.owner;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import components.Page;
 
-@WebServlet(name = "AdminMain", urlPatterns = {"/AdminMain"})
-public class AdminMain extends HttpServlet {
+@WebServlet(name = "OwnerMain", urlPatterns = {"/OwnerMain"})
+public class OwnerMain extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
