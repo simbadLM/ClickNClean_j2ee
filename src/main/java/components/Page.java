@@ -55,32 +55,64 @@ public class Page {
             case CLEANER : 
                     headerId = "cleaner";
                     connected = true;
-                    break;
+                    return(
+                        "<header>"
+                        + " <div id='" + headerId + "'>"
+                        + "     <ul>"
+                        + "         <li></li>"
+                        + "         <li></li>"
+                        + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
+                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                        + "     </ul>"
+                        + " </div>"
+                        + "</header>"
+                    );
             case OWNER : 
                     headerId = "owner";
                     connected = true;
-                    break;
+                    return(
+                        "<header>"
+                        + " <div id='" + headerId + "'>"
+                        + "     <ul>"
+                        + "         <li></li>"
+                        + "         <li></li>"
+                        + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
+                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                        + "     </ul>"
+                        + " </div>"
+                        + "</header>"
+                    );
             case ADMIN: 
                     headerId = "admin";
                     connected = true;
-                    break;
-            case UNKNOWN:
-                    headerId = "invite";
-                    break;
+                    return(
+                        "<header>"
+                        + " <div id='" + headerId + "'>"
+                        + "     <ul>"
+                        + "         <li></li>"
+                        + "         <li></li>"
+                        + "         <li><b>Mode Administrateur</li>"
+                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                        + "     </ul>"
+                        + " </div>"
+                        + "</header>"
+                    );
+
             default:
                     headerId = "invite";
+                    return(
+                        "<header>"
+                        + " <div id='" + headerId + "'>"
+                        + "     <ul>"
+                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                        + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
+                        + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
+                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                        + "     </ul>"
+                        + " </div>"
+                        + "</header>"
+                    );
         }
-        return(
-            "<header>"
-            + " <div id='" + headerId + "'>"
-            + "     <ul>"
-            + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-            + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
-            + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
-            + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-            + "     </ul>"
-            + " </div>"
-            + "</header>"
-        );
+        
     }
 }
