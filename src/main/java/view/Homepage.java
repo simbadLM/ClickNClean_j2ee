@@ -13,9 +13,9 @@ import javax.servlet.http.HttpSession;
 import components.Page;
 import model.UserStatus;
 
-@WebServlet(name = "Homepage", urlPatterns = {"/accueil"})
+@WebServlet(name = "Homepage", urlPatterns = {"/home"})
 public class Homepage extends HttpServlet {
-    boolean redirected; 
+    boolean redirected;
 
     String renderRedirectMessage(HttpSession currentSession, boolean redirected) {
         currentSession.setAttribute("connection", "");
@@ -32,9 +32,9 @@ public class Homepage extends HttpServlet {
 
         if (session.getAttribute("connection") != null && session.getAttribute("connection").equals("failed")) redirected = true;
         if (session.getAttribute("askedRegistered") == null) session.setAttribute("askedregistered", "none");
-       
+
         PrintWriter out = response.getWriter();
-        
+
         out.println(
             Page.TopPage(request, response)
             + "<section class='sec1'>"
@@ -48,7 +48,7 @@ public class Homepage extends HttpServlet {
             + "<section class='sec2'>"
             +   "<div class='buttonContainer'>"
             +       "<button id='buttonCleaner' onclick='registerCleaner();'><b>S'INSCRIRE</b> comme <b>CLEANER</b></button>"
-            +       "<p>Du temps libre  à transformer en argent ? Besoin d’un complément de revenu ?  "
+            +       "<p>Du temps libre à transformer en argent ? Besoin d’un complément de revenu ?  "
             +           "Ou tout simplement vous adorez faire le ménage ! "
             +           "CLICK & CLEAN est LA plateforme PARFAITE pour combler votre activité le temps de quelques heures par semaine. "
             +           "PAS ❌ de contrat, PAS ❌ de contrainte, votre rémunération vous va directement dans votre POCHE ✅ "
@@ -58,7 +58,7 @@ public class Homepage extends HttpServlet {
             +       "<div id='mainContent'>"
             +           "<div id='connectionForm'>"
             +               "<h1>Connexion</h1>"
-            +               renderRedirectMessage(session, redirected) 
+            +               renderRedirectMessage(session, redirected)
             +               "<form method='post' action='http://localhost:9090/clickNclean_j2ee/login'>"
             +                   "<input class='inputField' type='text' name='email' placeholder='E-mail' required>"
             +                   "<input class='inputField' type='password' name='password' placeholder='Mot de passe' required>"
@@ -75,7 +75,7 @@ public class Homepage extends HttpServlet {
             +       "</p>"
             +   "</div>"
             + "</section>"
-            +Page.BottomPage(response)
-        ); 
+            + Page.BottomPage(response)
+        );
     }
 }

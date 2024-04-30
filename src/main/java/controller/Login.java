@@ -24,64 +24,61 @@ import model.UserStatus;
 
 public class Login extends HttpServlet {
 
-    @Override
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String psw = request.getParameter("password");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
-		
+
 		Pair<Integer, UserStatus> user;
 
-    	Db connection = new Db();
+		Db connection = new Db();
 
 		try {
 			user = connection.DAOReadUser(email, psw);
 		} catch (Exception e) {
-			response.sendRedirect(request.getContextPath() + "/accueil");
+			response.sendRedirect(request.getContextPath() + "/home");
 			session.setAttribute("connection", "failed");
 			return;
 		}
 		try {
-
-		
 			switch (user.getValue1()) {
-				case ADMIN:
-					System.out.print("Admin requested");
+			case ADMIN:
+				System.out.print("Admin requested");
 
-					Admin admin = connection.DAOReadAdmin(user.getValue0());
-					session.setAttribute("user", admin);
-					session.setAttribute("status", "admin");
-					response.sendRedirect(request.getContextPath() + "/AdminMain");
-					break;
+				Admin admin = connection.DAOReadAdmin(user.getValue0());
+				session.setAttribute("user", admin);
+				session.setAttribute("status", "admin");
+				response.sendRedirect(request.getContextPath() + "/adminHome");
+				break;
 
-				case CLEANER:
-					System.out.print("Cleaner requested");
-					
-					Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
-					session.setAttribute("user", cleaner);
-					session.setAttribute("status", "cleaner");
-					response.sendRedirect(request.getContextPath() + "/CleanerMain");
-					break;
+			case CLEANER:
+				System.out.print("Cleaner requested");
 
-				case OWNER :
-					System.out.print("Owner requested");
+				Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
+				session.setAttribute("user", cleaner);
+				session.setAttribute("status", "cleaner");
+				response.sendRedirect(request.getContextPath() + "/cleanerHome");
+				break;
 
-					Owner owner = connection.DAOReadOwner(user.getValue0());
-					session.setAttribute("user", owner);
-					session.setAttribute("status", "owner");
-					response.sendRedirect(request.getContextPath() + "/OwnerMainController");
-					break;
-				
-				case UNKNOWN: 
-					response.sendRedirect(request.getContextPath() + "/accueil");
-					break;
+			case OWNER :
+				System.out.print("Owner requested");
+
+				Owner owner = connection.DAOReadOwner(user.getValue0());
+				session.setAttribute("user", owner);
+				session.setAttribute("status", "owner");
+				response.sendRedirect(request.getContextPath() + "/OwnerMainController");
+				break;
+
+			case UNKNOWN:
+				response.sendRedirect(request.getContextPath() + "/home");
+				break;
 			}
 		} catch (Exception e) {
 			System.err.println("Internal error: Could not find a given " + user.getValue1()
-				 + "for user: " + user.getValue0() + "\nSQL error: " + e);
+			                   + "for user: " + user.getValue0() + "\nSQL error: " + e);
 		}
-	
+
 	}
 }
- 

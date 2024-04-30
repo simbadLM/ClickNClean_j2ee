@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import components.Page;
 
-@WebServlet(name = "AdminMain", urlPatterns = {"/AdminMain"})
+@WebServlet(name = "AdminMain", urlPatterns = {"/adminHome"})
 public class AdminMain extends HttpServlet {
 
     @Override
@@ -22,7 +22,7 @@ public class AdminMain extends HttpServlet {
         out.println(
             Page.TopPage(request, response)
             + ""
-            +Page.BottomPage(response)
+            + Page.BottomPage(response)
         );
     }
 }

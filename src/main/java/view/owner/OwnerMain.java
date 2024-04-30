@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import components.Page;
 import model.Property;
 
-@WebServlet(name = "OwnerMain", urlPatterns = {"/OwnerMain"})
+@WebServlet(name = "OwnerMain", urlPatterns = {"/ownerHome"})
 public class OwnerMain extends HttpServlet {
 
 
@@ -37,7 +37,7 @@ public class OwnerMain extends HttpServlet {
             +       "</form>"
             +   "</div>"
             + "</section>"
-            +Page.BottomPage(response)
+            + Page.BottomPage(response)
         );
     }
     public String selectProperties(HttpServletRequest request, HttpServletResponse response) {
@@ -45,9 +45,9 @@ public class OwnerMain extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayList<Property> properties = (ArrayList<Property>)session.getAttribute("properties");
         String propertiesString = (
-            "<select class='inputFieldProp' name='property' required>"
-            +   "<option value='' >--Merci de choisir une option--</option>"
-        );
+                                      "<select class='inputFieldProp' name='property' required>"
+                                      +   "<option value='' >--Merci de choisir une option--</option>"
+                                  );
 
         for (Property currentPro : properties) {
             String display = currentPro.getPropertyAddress().toString();
@@ -55,8 +55,8 @@ public class OwnerMain extends HttpServlet {
         }
 
         return (
-            propertiesString 
-            + "<option onclick='addProp();'> + Ajouter une nouvelle propriété</option>"
-            + "</select>");
+                   propertiesString
+                   + "<option onclick='addProp();'> + Ajouter une nouvelle propriété</option>"
+                   + "</select>");
     }
 }

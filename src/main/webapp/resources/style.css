@@ -15,6 +15,11 @@ html * {
 
 /*---------------------------------------⬇-Header-⬇-----------------------------------------*/
 
+header{
+    width: 100%;
+/*    border: 5px solid blue;*/
+}
+
 #cleaner {
     background-image: url("./banner_cleaner.png");
     object-fit: fill;
@@ -268,4 +273,77 @@ h1 {
     width: 50%;
     height: 50%;
     display: flex;
-}   
+}
+
+
+/*------------------------------------⬇-Dropdown Menu-⬇----------------------------------------*/
+
+#dropdown_menu_container{
+    --hovered:0;
+    display: none; 
+
+    position: absolute;
+    right: 5%;
+    top: 10%;
+
+/*    margin-top: -10px;*/
+
+    width: 15%;
+    height: auto;
+
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: white;
+
+    line-height: 25px;
+}
+
+#dropdown_menu_container{
+    --hovered: 0;
+}
+
+#dropdown_menu_container:hover{
+    --hovered: 1;
+}
+
+#dropdown_menu_container a{
+    text-decoration: none;
+    color: black;
+}
+
+#dropdown_menu{
+    width: 90%;
+    object-fit: fill;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+
+    color: black;
+    text-align: left;
+}
+#dropdown_menu a:hover:after{
+    padding-right: 10px;
+}
+
+#dropdown_menu a:after{
+    padding: 0px;
+    float: right;
+    color: black;
+    content: ">";
+}
+
+#menu_button{
+    position: fixed;
+    right: 15px;
+    top: 7%;
+
+    margin: 0px;
+    padding: 0px;
+
+    width: 3%;
+    height: auto;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+
+}
