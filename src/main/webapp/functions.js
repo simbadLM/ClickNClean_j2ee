@@ -24,7 +24,7 @@ function registerCleaner() {
         +       "<textarea class='inputFieldRegC' name='motiv' placeholder='Pour quelle raison vous inscrivez-vous ?' required></textarea>"
         +       "<caption>Quel expérience avez-vous ?</caption>"
         +       "<select class='inputFieldRegC' name='exp' required>"
-        +            "<option value='' >--Merci de choisir option--</option>"
+        +            "<option value='' >--Merci de choisir une option--</option>"
         +           "<option value='1'>Aucune</option>"
         +           "<option value='2' >Moins d'un an</option>"
         +           "<option value='3' >Entre 1 et 3 ans</option>"
@@ -61,4 +61,8 @@ function registerOwner() {
             +       "<input class='buttonReg' type='submit' value=\"JE M'INSCRIS\">"
             +   "</form>"
             +"</div>"
+}
+
+function onProp() {
+    location = "http://localhost:9090/clickNclean_j2ee/OwnerAddProp'"
 }

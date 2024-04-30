@@ -21,7 +21,7 @@ public class AdminMain extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(
             Page.TopPage(request, response)
-            + "<p>Bonjour, "
+            + ""
             +Page.BottomPage(response)
         );
     }

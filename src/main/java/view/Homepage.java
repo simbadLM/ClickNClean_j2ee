@@ -37,7 +37,7 @@ public class Homepage extends HttpServlet {
         
         out.println(
             Page.TopPage(request, response)
-            + "<section id='sec1'>"
+            + "<section class='sec1'>"
             +   "<div>"
             +       "<h2>RECHERCHEZ UNE PRESTATION DE MÉNAGE</h2>"
             +   "</div>"
@@ -45,7 +45,7 @@ public class Homepage extends HttpServlet {
             +       "<h2>DÉPOSEZ VOTRE ANNONCE DE MÉNAGE PONCTUEL</h2>"
             +   "</div>"
             + "</section>"
-            + "<section id='sec2'>"
+            + "<section class='sec2'>"
             +   "<div class='buttonContainer'>"
             +       "<button id='buttonCleaner' onclick='registerCleaner();'><b>S'INSCRIRE</b> comme <b>CLEANER</b></button>"
             +       "<p>Du temps libre  à transformer en argent ? Besoin d’un complément de revenu ?  "

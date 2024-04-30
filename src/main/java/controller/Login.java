@@ -48,23 +48,29 @@ public class Login extends HttpServlet {
 			switch (user.getValue1()) {
 				case ADMIN:
 					System.out.print("Admin requested");
+
+					Admin admin = connection.DAOReadAdmin(user.getValue0());
+					session.setAttribute("user", admin);
 					session.setAttribute("status", "admin");
-					//Admin admin = connection.DAOReadAdmin(user.getValue0());
 					response.sendRedirect(request.getContextPath() + "/AdminMain");
 					break;
 
 				case CLEANER:
 					System.out.print("Cleaner requested");
+					
+					Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
+					session.setAttribute("user", cleaner);
 					session.setAttribute("status", "cleaner");
-					//Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
 					response.sendRedirect(request.getContextPath() + "/CleanerMain");
 					break;
 
 				case OWNER :
 					System.out.print("Owner requested");
+
+					Owner owner = connection.DAOReadOwner(user.getValue0());
+					session.setAttribute("user", owner);
 					session.setAttribute("status", "owner");
-					//Owner owner = connection.DAOReadOwner(user.getValue0());
-					response.sendRedirect(request.getContextPath() + "/OwnerMain");
+					response.sendRedirect(request.getContextPath() + "/OwnerMainController");
 					break;
 				
 				case UNKNOWN: 
