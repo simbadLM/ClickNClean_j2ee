@@ -11,7 +11,6 @@ import model.UserStatus;
 
 /*--------------------------------------⬇-Basic components-⬇----------------------------------------*/
 
-
 public class Page {
     public static String url;
     public static UserStatus sessionHost;
@@ -23,96 +22,139 @@ public class Page {
             title = request.getPathInfo().replace("/", "");
         }
 
-
-        return(
-            "<!DOCTYPE html>"
-            + "<html lang='fr'>"
-            + "<head>"
-            +    "<script src='./functions.js'></script>"
-            +    "<link rel='stylesheet' href='./resources/style.css'>"
-            +    "<meta charset='UTF-8'>"
-            +    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
-            +        "<title> " + title + "</title>"
-            + "</head>"
-            + "<body>" + Page.Header(request, response)
-        );
+        return ("<!DOCTYPE html>"
+                + "<html lang='fr'>"
+                + "<head>"
+                + "<script src='./functions.js'></script>"
+                + "<script defer src='./resources/collapsible_menu.js'></script>"
+                + "<link rel='stylesheet' href='./resources/style.css'>"
+                + "<meta charset='UTF-8'>"
+                + "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+                + "<title> " + title + "</title>"
+                + "</head>"
+                + "<body>" + Page.Header(request, response));
     }
 
     public static String BottomPage(HttpServletResponse response) throws IOException {
-        return(
-            "</body>"
-            + "</html>"
-        );
+        return ("</body>"
+                + "</html>");
     }
 
     public static String Header(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        UserStatus status = UserStatus.fromString((String)session.getAttribute("status")); // This needs to be casted from Object(session) -> String
+        UserStatus status = UserStatus.fromString((String) session.getAttribute("status")); // This needs to be casted
+        // from Object(session) ->
+        // String
         String headerId = status.toString();
         boolean connected = false;
 
         switch (status) {
-            case CLEANER : 
-                    headerId = "cleaner";
-                    connected = true;
-                    return(
-                        "<header>"
-                        + " <div id='" + headerId + "'>"
-                        + "     <ul>"
-                        + "         <li></li>"
-                        + "         <li></li>"
-                        + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
-                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                        + "     </ul>"
-                        + " </div>"
-                        + "</header>"
-                    );
-            case OWNER : 
-                    headerId = "owner";
-                    connected = true;
-                    return(
-                        "<header>"
-                        + " <div id='" + headerId + "'>"
-                        + "     <ul>"
-                        + "         <li></li>"
-                        + "         <li></li>"
-                        + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
-                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                        + "     </ul>"
-                        + " </div>"
-                        + "</header>"
-                    );
-            case ADMIN: 
-                    headerId = "admin";
-                    connected = true;
-                    return(
-                        "<header>"
-                        + " <div id='" + headerId + "'>"
-                        + "     <ul>"
-                        + "         <li></li>"
-                        + "         <li></li>"
-                        + "         <li><b>Mode Administrateur</li>"
-                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                        + "     </ul>"
-                        + " </div>"
-                        + "</header>"
-                    );
+        case CLEANER:
+            headerId = "cleaner";
+            connected = true;
+            return ("<header>"
+                    + " <div id='" + headerId + "'>"
+                    + "     <ul>"
+                    + "         <li></li>"
+                    + "         <li></li>"
+                    + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</b></li>"
+                    + "         <li><a href='http://localhost:9090/clickNclean_j2ee/home'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                    + "     </ul>"
+                    + " </div>"
+                    + Menu(request, response)
+                    + "</header>");
+        case OWNER:
+            headerId = "owner";
+            connected = true;
+            return ("<header>"
+                    + " <div id='" + headerId + "'>"
+                    + "     <ul>"
+                    + "         <li></li>"
+                    + "         <li></li>"
+                    + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</b></li>"
+                    + "         <li><a href='http://localhost:9090/clickNclean_j2ee/home'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                    + "     </ul>"
+                    + " </div>"
+                    + Menu(request, response)
+                    + "</header>");
+        case ADMIN:
+            headerId = "admin";
+            connected = true;
+            return ("<header>"
+                    + " <div id='" + headerId + "'>"
+                    + "     <ul>"
+                    + "         <li></li>"
+                    + "         <li></li>"
+                    + "         <li><b>Mode Administrateur</b></li>"
+                    + "         <li><a href='http://localhost:9090/clickNclean_j2ee/home'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                    + "     </ul>"
+                    + " </div>"
+                    + Menu(request, response)
+                    + "</header>");
 
-            default:
-                    headerId = "invite";
-                    return(
-                        "<header>"
-                        + " <div id='" + headerId + "'>"
-                        + "     <ul>"
-                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                        + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</li>"
-                        + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</li>"
-                        + "         <li><a href='http://localhost:9090/clickNclean_j2ee/accueil'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
-                        + "     </ul>"
-                        + " </div>"
-                        + "</header>"
-                    );
+        default:
+            headerId = "invite";
+            return ("<header>"
+                    + " <div id='" + headerId + "'>"
+                    + "     <ul>"
+                    + "         <li><a href='http://localhost:9090/clickNclean_j2ee/home'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                    + "         <li><b>Mode Cleaner</b><br>Prestataire de ménage</b></li>"
+                    + "         <li><b>Mode Tidi-seeker</b><br>Chercheur de prestataire</b></li>"
+                    + "         <li><a href='http://localhost:9090/clickNclean_j2ee/home'> <img id='logo' src='./resources/logo_cnc_noBg.png'></a></li>"
+                    + "     </ul>"
+                    + " </div>"
+                    + "</header>");
         }
-        
+    }
+
+    public static String Menu(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserStatus status = UserStatus.fromString((String) session.getAttribute("status")); // This needs to be casted
+        // from Object(session) ->
+        // String
+        String headerId = status.toString();
+
+        String base_url = "http://localhost:9090/clickNclean_j2ee";
+
+        System.out.println("\nHeaderId: " + headerId);
+        switch (status) {
+        case CLEANER:
+            return ("<button type='button' id='menu_button'> <img id='icon' src='./resources/person.png'></button>"
+                    + "<div id='dropdown_menu_container'>"
+                    + "  <div id='dropdown_menu'>"
+                    + "      <a href=" + base_url + "/cleanerNotifications> Notifications </a><br>"
+                    + "      <a href=" + base_url + "/cleanerProfile> Compte </a><br>"
+                    + "      <hr>"
+                    + "      <a href=" + base_url + "/helpCenter> Centre d'aide </a><br>"
+                    + "      <a href=" + base_url + "/contact> Contact </a><br>"
+                    + "      <a href=" + base_url + "/logout> Déconnexion </a><br>"
+                    + "  </div>"
+                    + "</div>");
+        case OWNER:
+            return ("<button type='button' id='menu_button'> <img id='icon' src='./resources/person.png'></button>"
+                    + "<div id='dropdown_menu_container'>"
+                    + "  <div id='dropdown_menu'>"
+                    + "      <a href=" + base_url + "/ownerProfile> Compte </a><br>"
+                    + "      <hr>"
+                    + "      <a href=" + base_url + "/helpCenter> Centre d'aide </a><br>"
+                    + "      <a href=" + base_url + "/contact> Contact </a><br>"
+                    + "      <a href=" + base_url + "/logout> Déconnexion </a><br>"
+                    + "  </div>"
+                    + "</div>");
+
+        case ADMIN:
+            return ("<button type='button' id='menu_button'> <img id='icon' src='./resources/person.png'></button>"
+                    + "<div id='dropdown_menu_container'>"
+                    + "  <div id='dropdown_menu'>"
+                    + "      <a href=" + base_url + "/helpCenter> Centre d'aide </a><br>"
+                    + "      <a href=" + base_url + "/contact> Contact </a><br>"
+                    + "      <a href=" + base_url + "/logout> Déconnexion </a><br>"
+                    + "  </div>"
+                    + "</div>");
+
+        }
+
+        return "Menu";
+
     }
 }

@@ -20,21 +20,21 @@ import tools.Db;
 
 
 public class OwnerMainController extends HttpServlet {
-    
-        @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            HttpSession session = request.getSession(); 
-            Db connection = new Db();
-            ArrayList<Property> properties = new ArrayList<>();
-            int ownerId = ((Owner)session.getAttribute("user")).getOwnerID();
 
-            try {
-                properties = connection.DAOReadOwnerProperties(ownerId);
-                session.setAttribute("properties", properties);
-                response.sendRedirect((request.getContextPath() + "/OwnerMain"));
-            } catch (Exception e) {
-                System.err.println("couldn't read properties for owner with Id : " + ownerId + "due to : " + e);
-                return;
-            }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Db connection = new Db();
+        ArrayList<Property> properties = new ArrayList<>();
+        int ownerId = ((Owner)session.getAttribute("user")).getOwnerID();
+
+        try {
+            properties = connection.DAOReadOwnerProperties(ownerId);
+            session.setAttribute("properties", properties);
+            response.sendRedirect((request.getContextPath() + "/ownerHome"));
+        } catch (Exception e) {
+            System.err.println("couldn't read properties for owner with Id : " + ownerId + "due to : " + e);
+            return;
         }
+    }
 }
