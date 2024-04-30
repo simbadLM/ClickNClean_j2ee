@@ -63,6 +63,6 @@ function registerOwner() {
             +"</div>"
 }
 
-function onProp() {
+function addProp() {
     location = "http://localhost:9090/clickNclean_j2ee/OwnerAddProp'"
 }

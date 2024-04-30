@@ -37,17 +37,46 @@ public class OwnerMain extends HttpServlet {
             +       "</form>"
             +   "</div>"
             + "</section>"
-            + Page.BottomPage(response)
+            + "<section class='sec2owner'>"
+            +   "<div>"
+            +       "<div id=sec2owner_container>"
+            +           "<div>"
+            +               "<h2>CLICK & CLEAN ?</h2>"
+            +           "</div>"
+            +           "<div>"
+            +               "<p>"
+            +                   "CLICK & CLEAN, c’est : tu CLICK pour déposer ton offre de ménage et tu CLEAN pour "
+            +                       "le faire nettoyer par un SUPER Cleaner<br>Maîtres mots :"
+            +               "</p>"
+            +                   "<ul>"
+            +                       "<li>Facilité</li>"
+            +                       "<li>Rapidité</li>"
+            +                       "<li>Propreté</li>"
+            +                   "</ul>"
+            +               "<p>"
+            +                   "En 1 click, nettoie ton bien !"
+            +               "</p>"
+            +           "</div>"
+            +       "</div>"
+            +   "</div>"
+            +   "<div>"
+            +       "<img id='cleaner_pic' src='./resources/cleaner_pic.png'>"
+            +   "</div>"
+            + "</section>"
+            +Page.BottomPage(response)
         );
     }
+
     public String selectProperties(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         ArrayList<Property> properties = (ArrayList<Property>)session.getAttribute("properties");
         String propertiesString = (
-                                      "<select class='inputFieldProp' name='property' required>"
-                                      +   "<option value='' >--Merci de choisir une option--</option>"
-                                  );
+
+            "<select class='inputFieldProp' name='property' required>"
+            +   "<option value='' >--Choix des propriétés--</option>"
+        );
+
 
         for (Property currentPro : properties) {
             String display = currentPro.getPropertyAddress().toString();
