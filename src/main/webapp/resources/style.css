@@ -4,12 +4,26 @@
     font-family: 'sources sans pro';
     src: url(./fonts/sourcesanspro.woff);
 }
+
+@font-face { 
+    font-family: 'sources sans pro light';
+    src: url(./fonts/sourcesanspro_light.woff);
+}
+
+@font-face { 
+    font-family: 'sources sans pro regular';
+    src: url(./fonts/sourcesanspro_regular.woff);
+}
 /*---------------------------------------⬇-Base-⬇-------------------------------------------*/
 
 html * {
     width: 100%;
     height: 100%;
     padding: 0%;
+    font-family: 'sources sans pro regular';
+}
+
+b, h1, h2 {
     font-family: 'sources sans pro';
 }
 
@@ -20,7 +34,7 @@ html * {
     object-fit: fill;
     background-size: 100%;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
 
 #owner {
@@ -28,7 +42,7 @@ html * {
     object-fit: fill;
     background-size: 100%;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
 
 #admin {
@@ -36,7 +50,7 @@ html * {
     object-fit: fill;
     background-size: 100%;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
 
 #invite {
@@ -44,7 +58,7 @@ html * {
     object-fit: fill;
     background-size: 100%;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
 
 #owner {
@@ -67,7 +81,7 @@ ul {
 
 }
 
-li {
+header li {
     list-style-type: none;
     justify-content: center;
     object-fit: 100%;
@@ -244,28 +258,95 @@ h1 {
 /*------------------------------------⬇-Owner Main-⬇----------------------------------------*/
 
 .sec1owner {
-    margin:0%;
+    margin-top:0%;
     width:auto;
     height: 500px;
     background-image: url("./bg_connected.png");
     background-repeat: no-repeat;
     background-size: contain;
-    display: flex;
 }
 
 .sec1title {
-    margin-top: 10%;
+    margin-top: 0%;
+    padding-top: 10%;
     font-size: 3.5rem;
 }
 
-#createMission form *{
-    border-radius: 25%;
-    background-color: #B6B3B4;
+#createMission {
+    width: 50%;
+    height: 15%;
+    border-radius: 50px;
+    border: 2px solid #11C0DE;
+    background-color :white;
+    margin: auto;
+    margin-top: -170px;
+    padding: 0px;
     display: flex;
 }
 
-#createMission * {
-    width: 50%;
-    height: 50%;
+#createMission form :not(.button){
     display: flex;
-}   
+    border: none;
+    border-right: 3px solid #C8C8C8;
+    background-color: none;
+    font-size: 1em;
+    color: #A6A6A6;
+    width: 250px;
+    padding: 0px 20px 0px 20px;
+    margin: auto;
+    height: 60%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url('./calendar_icon_owner.png');
+    background-size: 100%;
+ }
+
+
+#createMission * {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+}
+
+#createMission .button {
+    margin-right: 3%;
+}
+
+.sec2owner {
+    margin: -75px 10% 10% 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sec2owner ul {
+    display: inline;
+    margin: 0px;
+}
+
+.sec2owner li {
+    list-style: inside;
+    color: black;
+    font-family: 'sources sans pro regular';
+    margin: 0px;
+}
+
+#sec2owner_container {
+    margin: 0px 20% 0px 20%;
+    display: inline;
+    text-align: left;
+}
+
+#sec2owner_container h2 {
+    text-align: left;
+}
+
+#cleaner_pic {
+    width: 40%;
+    padding-left: 20%;
+}
+
+
+
+

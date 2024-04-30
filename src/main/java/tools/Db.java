@@ -55,7 +55,7 @@ public class Db {
 
 		int port = 8889; // Mamp
 
-		int port = 3306; // Laragon
+		//int port = 3306; // Laragon
 
 		this.strUrl = "jdbc:mysql://localhost:" + port + "/" + dbName
 		              + "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Paris";
