@@ -85,8 +85,6 @@ public class OwnerMain extends HttpServlet {
                 + "</option>";
             propertiesString += display;   
         }
-
-        System.out.println(propertiesString);
         return (
                    propertiesString
                    + "<option value='addProp'> + Ajouter une nouvelle propriété</option>"
