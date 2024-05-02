@@ -417,3 +417,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: none;
     border-radius: 5px;
 }
+
+/*------------------------------------⬇-Cleaner mission-⬇----------------------------------------*/
+
+
+.mission_list{
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 80%;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.mission_proposal{
+    margin-left: 3%;
+/*    background: blue;*/
+    display: flex;
+    justify-content: right;
+}
+
+.mission_proposal > button{
+/*    background: red;*/
+    width: 20%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    margin-top: auto;
+    margin-left: auto;
+}

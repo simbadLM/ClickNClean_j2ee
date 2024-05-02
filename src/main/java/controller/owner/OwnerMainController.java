@@ -26,7 +26,7 @@ public class OwnerMainController extends HttpServlet {
         HttpSession session = request.getSession();
         Db connection = new Db();
         ArrayList<Property> properties = new ArrayList<>();
-        int ownerId = ((Owner)session.getAttribute("user")).getOwnerID();
+        int ownerId = ((Owner)session.getAttribute("user")).getOwnerId();
 
         try {
             properties = connection.DAOReadOwnerProperties(ownerId);

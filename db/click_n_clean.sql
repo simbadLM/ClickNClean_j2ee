@@ -90,7 +90,7 @@ CREATE TABLE `cleaner` (
 --
 
 INSERT INTO `cleaner` (`id_cleaner`, `address_display`, `latitude`, `longitude`, `km_range`, `hourly_rate`, `biography`, `photo_identity`, `photo_profile`, `photo_live`, `motivation`, `experience`, `confirmed`) VALUES
-(2, '28 av yves thepot 29000 quimper', 47.988373, -4.088107, 0, 0, 'A cool cleaner biography', 'null', 'null', 'null', 'This should be an acceptable motivation', 1, 1);
+(2, '28 av yves thepot 29000 quimper', 47.988373, -4.088107, 10, 25, 'A cool cleaner biography', 'null', 'null', 'null', 'This should be an acceptable motivation', 1, 1);
 
 -- --------------------------------------------------------
 --

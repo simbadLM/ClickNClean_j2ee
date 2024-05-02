@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 				Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
 				session.setAttribute("user", cleaner);
 				session.setAttribute("status", "cleaner");
-				response.sendRedirect(request.getContextPath() + "/cleanerHome");
+				response.sendRedirect(request.getContextPath() + "/CleanerMainController");
 				break;
 
 			case OWNER :
