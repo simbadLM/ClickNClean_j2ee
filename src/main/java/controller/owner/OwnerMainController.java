@@ -1,7 +1,6 @@
 package controller.owner;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -32,6 +31,7 @@ public class OwnerMainController extends HttpServlet {
             properties = connection.DAOReadOwnerProperties(ownerId);
             session.setAttribute("properties", properties);
             response.sendRedirect((request.getContextPath() + "/ownerHome"));
+            
         } catch (Exception e) {
             System.err.println("couldn't read properties for owner with Id : " + ownerId + "due to : " + e);
             return;

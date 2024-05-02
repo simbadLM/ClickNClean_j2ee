@@ -63,6 +63,6 @@ function registerOwner() {
             +"</div>"
 }
 
-function addProp() {
-    location = "http://localhost:9090/clickNclean_j2ee/OwnerAddProp'"
+function addProp(value) {
+    if (value == 'addProp') window.location.replace('http://localhost:9090/clickNclean_j2ee/newProperty');
 }

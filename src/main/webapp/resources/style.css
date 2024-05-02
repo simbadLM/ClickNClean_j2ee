@@ -149,9 +149,9 @@ h1 {
     margin-right: auto;
 }
 
-#connectionForm, #RegistrationForm {
-    width: 40%;
-    height: 80%;
+#connectionForm, #registrationForm {
+    width: 60%;
+    height: 90%;
     border: 1px solid black;
     border-radius: 40px;
     padding-top: 4%;
@@ -164,13 +164,13 @@ h1 {
     justify-content: center;
     background-color: white;
     position: relative;
-    top: -120px;
+    top: -180px;
 }
 
-#RegistrationForm {
+#registrationForm {
     width: 50%;
     height: 100%;
-    top: -220px;
+    top: -270px;
 }
 
 #MainContent {
@@ -185,7 +185,7 @@ h1 {
     justify-content: center;
 }
 
-#connectionForm h1, #RegistrationForm h1, caption, #connectionForm, #registrationForm{
+#connectionForm h1, #registrationForm h1, #property caption, #connectionForm, #registrationForm{
     align-items: center;
     text-align: center;
     margin-top: 0px;
@@ -350,6 +350,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #cleaner_pic {
     width: 40%;
     padding-left: 20%;
+}
+
+/*------------------------------------⬇-Adding Property-⬇----------------------------------------*/
+
+.sec1addProp {
+    margin-top:0%;
+    width:auto;
+    height: 500px;
+    background-image: url("./bg_connected.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.sec1addProp .sec1title {
+    padding-top: 5%;
+}
+
+#propertyForm {
+    width: 25%;
+    height: 70%;
+    border: 1px solid black;
+    border-radius: 80px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    font-family: 'sources sans pro', serif;
+    display: grid;
+    margin-top: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+    margin-top: -340px;
+}
+
+#propertyForm .inputField, #propertyForm .button {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 80%;
+    width: 100%;
 }
 
 /*------------------------------------⬇-Dropdown Menu-⬇----------------------------------------*/
