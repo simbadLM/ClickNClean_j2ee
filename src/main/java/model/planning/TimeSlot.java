@@ -1,11 +1,8 @@
 package model.planning;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
+
 
 
 public class TimeSlot {

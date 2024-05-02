@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.CleanerExperience;
-import model.OwnerMotivation;
 import model.UserStatus;
 
 /*--------------------------------------⬇-Basic components-⬇----------------------------------------*/
@@ -46,12 +44,10 @@ public class Page {
         // from Object(session) ->
         // String
         String headerId = status.toString();
-        boolean connected = false;
 
         switch (status) {
         case CLEANER:
             headerId = "cleaner";
-            connected = true;
             return ("<header>"
                     + " <div id='" + headerId + "'>"
                     + "     <ul>"
@@ -65,7 +61,6 @@ public class Page {
                     + "</header>");
         case OWNER:
             headerId = "owner";
-            connected = true;
             return ("<header>"
                     + " <div id='" + headerId + "'>"
                     + "     <ul>"
@@ -79,7 +74,6 @@ public class Page {
                     + "</header>");
         case ADMIN:
             headerId = "admin";
-            connected = true;
             return ("<header>"
                     + " <div id='" + headerId + "'>"
                     + "     <ul>"
@@ -151,10 +145,8 @@ public class Page {
                     + "      <a href=" + base_url + "/logout> Déconnexion </a><br>"
                     + "  </div>"
                     + "</div>");
-
+        
+        default :  return "Menu";
         }
-
-        return "Menu";
-
     }
 }

@@ -63,12 +63,11 @@ function registerOwner() {
             +"</div>"
 }
 
-function addProp() {
-    location = "http://localhost:9090/clickNclean_j2ee/OwnerAddProp'"
-}
-
-
 function acceptMission(id){
     console.log("redirecting to mission : " +id);
-    window.location.href = "http://localhost:9090/clickNclean_j2ee/CleanerRegisterMissionController?id="+ id 
+    window.location.href = "http://localhost:9090/clickNclean_j2ee/CleanerRegisterMissionController?id="+ id;
+}
+
+function addProp(value) {
+    if (value == 'addProp') window.location.replace('http://localhost:9090/clickNclean_j2ee/newProperty');
 }

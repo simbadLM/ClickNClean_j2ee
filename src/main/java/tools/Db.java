@@ -50,10 +50,10 @@ public class Db {
 
 
 		this.login = "root";
-		this.password = "";
+		this.password = "root";
 
 
-		// int port = 8889; // Mamp
+		 int port = 8889; // Mamp
 
 		int port = 3306; // Laragon
 

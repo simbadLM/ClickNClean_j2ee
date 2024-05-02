@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import tools.Db;
 import java.time.LocalDate;
 
 public class Admin extends User {

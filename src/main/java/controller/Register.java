@@ -39,7 +39,6 @@ public class Register extends HttpServlet {
 /*---------------------------------------⬇-Cleaner Registration-⬇-------------------------------------------*/
 
         if(request.getParameter("status").equals("c")) {
-            System.out.println("entered in c section");
 
             String label = request.getParameter("label");
             String houseN = request.getParameter("houseN");
@@ -59,7 +58,7 @@ public class Register extends HttpServlet {
                exp = CleanerExperience
                 .fromInt(Integer.parseInt(request.getParameter("exp")));
             } catch (Exception e) {
-                System.out.println("failed to set Cleaner Experience due to : " + e);
+                System.err.println("failed to set Cleaner Experience due to : " + e);
                 exp = CleanerExperience.NONE;
             }
     
@@ -95,7 +94,7 @@ public class Register extends HttpServlet {
                         );
             
                     } catch (Exception e) {
-                        System.out.println("Failed to register Cleaner due to : " + e);
+                        System.err.println("Failed to register Cleaner due to : " + e);
                         // TODO: avert user failed to register cleaner
                         return;
                     }
@@ -108,7 +107,7 @@ public class Register extends HttpServlet {
                         session.setAttribute("status", "owner");
                         response.sendRedirect(request.getContextPath() + "/CleanerMain");
                     } catch (Exception e) {
-                        System.out.println("Could not read newly created cleaner due to: " + e);
+                        System.err.println("Could not read newly created cleaner due to: " + e);
                         return;
                     }
                     
@@ -125,7 +124,7 @@ public class Register extends HttpServlet {
             try {
                 motiv = OwnerMotivation.fromInt(Integer.parseInt(request.getParameter("service")));
             } catch (Exception e) {
-                System.out.println("failed to set Owner motivation due to : " + e);
+                System.err.println("failed to set Owner motivation due to : " + e);
                 motiv = OwnerMotivation.GUEST_ROOM;
             }
             if (rawPwd.equals(rawConfirmPwd)) {
@@ -147,7 +146,7 @@ public class Register extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/OwnerMain");
                 }
                 catch (Exception e) {
-                    System.out.println("Failed to register Cleaner due to : " + e);
+                    System.err.println("Failed to register Cleaner due to : " + e);
                     // TODO: avert user failed to register Owner
                     return;
                 }

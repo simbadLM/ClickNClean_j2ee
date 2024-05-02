@@ -33,7 +33,7 @@ public class OwnerMain extends HttpServlet {
             +       "<form method='post' action='http://localhost:9090/clickNclean_j2ee/ownerMission'>"
             +           selectProperties(request, response)
             +           "<input type='date' name='date'>"
-            +           "<input class='button' type='submit' value='Click & CLEAN'>"
+            +           "<input class='button' type='submit' value='CLICK & CLEAN'>"
             +       "</form>"
             +   "</div>"
             + "</section>"
@@ -70,22 +70,24 @@ public class OwnerMain extends HttpServlet {
     public String selectProperties(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
         ArrayList<Property> properties = (ArrayList<Property>)session.getAttribute("properties");
         String propertiesString = (
 
-            "<select class='inputFieldProp' name='property' required>"
+            "<select class='inputFieldProp' name='property' required onchange='addProp(value);'>"
             +   "<option value='' >--Choix des propriétés--</option>"
         );
 
 
         for (Property currentPro : properties) {
-            String display = currentPro.getPropertyAddress().toString();
-            propertiesString += display;
-        }
 
+            String display = "<option value ='"+ properties.indexOf(currentPro)+ "' >" +currentPro.getPropertyAddress().asString()
+                + "</option>";
+            propertiesString += display;   
+        }
         return (
                    propertiesString
-                   + "<option onclick='addProp();'> + Ajouter une nouvelle propriété</option>"
+                   + "<option value='addProp'> + Ajouter une nouvelle propriété</option>"
                    + "</select>");
     }
 }
