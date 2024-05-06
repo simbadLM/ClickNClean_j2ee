@@ -46,7 +46,7 @@ public class Login extends HttpServlet {
 				Admin admin = connection.DAOReadAdmin(user.getValue0());
 				session.setAttribute("user", admin);
 				session.setAttribute("status", "admin");
-				response.sendRedirect(request.getContextPath() + "/adminHome");
+				response.sendRedirect(request.getContextPath() + "/AdminMainController");
 				break;
 
 			case CLEANER:

@@ -547,3 +547,30 @@ input[type="submit"].profile_input {
 option[selected]{
     background-color: darkgray;
 }
+
+
+
+/*------------------------------------⬇-Admin Cleaner Management-⬇----------------------------------------*/
+
+.admin_cleaner_confirmation{
+    border: 2px solid black;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 3%;
+    padding: 1.5%;
+    padding-bottom: 3%;   
+}
+
+.admin_cleaner_confirmation>label{
+    color: red;
+}
+
+.admin_cleaner_confirmation>p{
+}
+.admin_cleaner_confirmation>span>button{
+/*    border: 2px solid red;*/
+    width: 10%;
+    margin-right: 5px;
+    float:right;
+    margin-left: 2%;
+}
