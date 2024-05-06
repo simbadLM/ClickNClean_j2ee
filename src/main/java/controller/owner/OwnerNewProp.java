@@ -14,7 +14,7 @@ import tools.Db;
 
 @WebServlet(name = "ownerNewProp", urlPatterns = {"/ownerNewProp"})
 public class OwnerNewProp extends HttpServlet {
-   
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class OwnerNewProp extends HttpServlet {
         String postCode = request.getParameter("postcode");
         String city = request.getParameter("city");
         int surface = Integer.parseInt(request.getParameter("surfaceProperty"));
-        int ownerId = ((Owner)session.getAttribute("user")).getOwnerID();
+        int ownerId = ((Owner)session.getAttribute("user")).getOwnerId();
         Db connection = new Db();
         Address address;
 

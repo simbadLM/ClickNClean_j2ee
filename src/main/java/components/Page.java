@@ -145,7 +145,7 @@ public class Page {
                     + "      <a href=" + base_url + "/logout> Déconnexion </a><br>"
                     + "  </div>"
                     + "</div>");
-        
+
         default :  return "Menu";
         }
     }

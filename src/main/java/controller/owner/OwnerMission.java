@@ -16,7 +16,7 @@ import tools.Db;
 
 @WebServlet(name = "ownerMission", urlPatterns = {"/ownerMission"})
 public class OwnerMission extends HttpServlet {
-   
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -30,20 +30,20 @@ public class OwnerMission extends HttpServlet {
         try {
             property = connection.DAOReadProperty(propertyId);
         } catch (Exception e) {
-            System.err.println("Failed to read property for property's id : " + propertyId + "due to : " + e);
+            System.err.println("Failed to read property for property's id : " + propertyId + " due to : " + e);
         }
-       
+
         try {
-			connection.DAOCreateNewMission(property, date);
+            connection.DAOCreateNewMission(property, date);
             //TODO: Avert user mission has been created successfully
-		} catch (Exception e) {
-			System.err.println("Failed to create a mission with : \n"
-                + "property n° "+ propertyId 
-                + "\n date : " + date     
-            );
+        } catch (Exception e) {
+            System.err.println("Failed to create a mission with : \n"
+                               + "property n° " + propertyId
+                               + "\n date : " + date
+                              );
             //TODO: Avert user that the mission wouldn't be created
             return;
-		}
+        }
         response.sendRedirect(request.getContextPath() + "/OwnerMainController");
     }
 }
