@@ -974,12 +974,12 @@ public class Db {
 
 	/*--------------------------------------READ MISSION BY OWNER------------------------------------------------------------- */
 
-	public ArrayList<Mission> DAOReadMissionOwner(int ownerId) throws InterruptedException, ExecutionException, Exception {
+
+	public ArrayList<Mission> DAOReadMissionsOwner(int ownerId) throws InterruptedException, ExecutionException, Exception {
 		Statement  st2 = conn.createStatement();
 		ArrayList<Mission> missions = new ArrayList<Mission>();
 		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner =" + ownerId;
 		//Property missionProperty = null;
-
 
 		ResultSet rSet = st2.executeQuery(query);
 
@@ -1037,51 +1037,6 @@ public class Db {
 			preparedStatement.executeUpdate();
 		}
 	}
-
-	/*--------------------------------------READ MISSION BY OWNER WHEN CLEANER IS NULL------------------------------------------------------------- */
-	public ArrayList<Mission> DAOReadMissionOwner1(int ownerId) throws InterruptedException, ExecutionException, Exception {
-		Statement  st2 = conn.createStatement();
-		ArrayList<Mission> missions = new ArrayList<Mission>();
-		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_cleaner IS NULL AND mission.id_owner =" + ownerId + ";";
-		//Property missionProperty = null;
-
-
-		ResultSet rSet = st2.executeQuery(query);
-
-		while (rSet.next()) {
-			ArrayList<Property> propList = DAOReadOwnerProperties(rSet.getInt("id_owner"));
-			Property missionProperty = null;
-			for (Property currentProp : propList) {
-				if (currentProp.getPropertyId() == rSet.getInt("id_property")) {
-					missionProperty = currentProp;
-					break;
-				}
-			}
-
-
-			if (missionProperty == null)  throw new Exception("The property of the mission is not in owner's properties list");
-
-			//while (rSet.next()) {
-
-			Mission mission = new Mission(
-			    rSet.getInt("id_mission"),
-			    missionProperty,
-			    rSet.getTimestamp("date_start").toLocalDateTime(),
-			    rSet.getDouble("duration"),
-			    rSet.getDouble("cost"),
-			    rSet.getDouble("commission"),
-			    rSet.getInt("id_owner"),
-			    rSet.getInt("id_cleaner"),
-			    MissionStatus.fromInt(rSet.getInt("state"))
-			);
-			missions.add(mission);
-		}
-		rSet.close();
-
-		//}
-		return missions;
-	}
-
 
 	/*--------------------------------------READ CLEANER IN MISSION PROPOSAL------------------------------------------------------------- */
 	public ArrayList<Cleaner> DAOReadMissionProposal(int missionId) throws InterruptedException, ExecutionException, Exception {

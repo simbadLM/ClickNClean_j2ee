@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Property;
 import tools.Db;
@@ -18,9 +19,10 @@ import tools.Db;
 public class OwnerMission extends HttpServlet {
    
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         System.out.println("OwnerMission requested !");
+        HttpSession session = request.getSession();
 
         int propertyId = Integer.parseInt(request.getParameter("property"));
         Db connection = new Db();
@@ -35,15 +37,21 @@ public class OwnerMission extends HttpServlet {
        
         try {
 			connection.DAOCreateNewMission(property, date);
-            //TODO: Avert user mission has been created successfully
+            session.setAttribute("missionCreation", "succed");
 		} catch (Exception e) {
-			System.err.println("Failed to create a mission with : \n"
+			System.out.println("Failed to create a mission with : \n"
                 + "property n° "+ propertyId 
                 + "\n date : " + date     
             );
-            //TODO: Avert user that the mission wouldn't be created
-            return;
+            session.setAttribute("missionCreation", "failed");
+            response.sendRedirect(request.getContextPath() + "/OwnerMainController");
 		}
+        String dateDisplay = (
+            Integer.toString(date.getDayOfMonth()) + "/"
+            + Integer.toString(date.getMonthValue()) + "/"   
+            + Integer.toString(date.getYear())
+        );
+        session.setAttribute("dateMission", dateDisplay);
         response.sendRedirect(request.getContextPath() + "/OwnerMainController");
     }
 }
