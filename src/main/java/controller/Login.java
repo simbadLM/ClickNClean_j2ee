@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String psw = request.getParameter("password");
@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 		try {
 			switch (user.getValue1()) {
 			case ADMIN:
-				System.out.print("Admin requested");
+				System.out.println("Admin requested");
 
 				Admin admin = connection.DAOReadAdmin(user.getValue0());
 				session.setAttribute("user", admin);
@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 				break;
 
 			case CLEANER:
-				System.out.print("Cleaner requested");
+				System.out.println("Cleaner requested");
 
 				Cleaner cleaner = connection.DAOReadCleaner(user.getValue0());
 				session.setAttribute("user", cleaner);
@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 				break;
 
 			case OWNER :
-				System.out.print("Owner requested");
+				System.out.println("Owner requested");
 
 				Owner owner = connection.DAOReadOwner(user.getValue0());
 				session.setAttribute("user", owner);

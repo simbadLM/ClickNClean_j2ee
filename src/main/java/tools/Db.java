@@ -507,7 +507,7 @@ public class Db {
 		Property missionProperty = null;
 
 		ResultSet rSet2 = st2.executeQuery(query);
-		if (rSet2.next()) {
+		while (rSet2.next()) {
 			ArrayList<Property> propList = DAOReadOwnerProperties(rSet2.getInt("id_owner"));
 			for (Property currentProp : propList) {
 				if (currentProp.getPropertyId() == rSet2.getInt("id_property")) {
@@ -528,7 +528,6 @@ public class Db {
 			    rSet2.getInt("id_owner"),
 			    rSet2.getInt("id_cleaner"),
 			    MissionStatus.fromInt(rSet2.getInt("state")));
-			rSet2.close();
 			missions.add(mission);
 		}
 		rSet2.close();
