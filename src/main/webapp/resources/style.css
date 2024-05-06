@@ -393,6 +393,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
 }
 
+#mission1, #mission0 {
+    height: 30px;
+    width: 100%;
+    background-color: rgb(2, 98, 2);
+    color: white;
+    text-align: center;
+    position: absolute;
+    margin-top: -10px;
+    z-index: 0;
+ 
+}
+
+#mission0 {
+    background-color: rgb(128, 3, 3);
+}
+
 /*------------------------------------⬇-Dropdown Menu-⬇----------------------------------------*/
 
 #dropdown_menu_container{
@@ -408,6 +424,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 20px;
     background-color: white;
     line-height: 25px;
+    z-index: 1;
 }
 
 #dropdown_menu_container{
@@ -430,9 +447,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 14px;
     color: black;
     text-align: left;
+    z-index: 1;
 }
+
 #dropdown_menu a:hover:after{
     padding-right: 10px;
+}
+
+#dropdown_menu a:hover{
+    font-family: 'sources sans pro';
 }
 
 #dropdown_menu a:after{
@@ -456,4 +479,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: transparent;
     border: none;
     border-radius: 5px;
+
+    z-index: 1;
 }

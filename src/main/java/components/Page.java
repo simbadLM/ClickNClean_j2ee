@@ -1,11 +1,14 @@
 package components;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.UserStatus;
+import model.Mission;
 
 /*--------------------------------------⬇-Basic components-⬇----------------------------------------*/
 
@@ -108,7 +111,7 @@ public class Page {
         // String
         String headerId = status.toString();
 
-        String base_url = "http://localhost:9090/clickNclean_j2ee";
+        String base_url = request.getContextPath();
 
         System.out.println("\nHeaderId: " + headerId);
         switch (status) {
@@ -129,6 +132,8 @@ public class Page {
                     + "<div id='dropdown_menu_container'>"
                     + "  <div id='dropdown_menu'>"
                     + "      <a href=" + base_url + "/ownerProfile> Compte </a><br>"
+                    + "      <hr>"
+                    + "      <a href=" + base_url + "/ownerFetchMissions> Mes missions </a><br>"
                     + "      <hr>"
                     + "      <a href=" + base_url + "/helpCenter> Centre d'aide </a><br>"
                     + "      <a href=" + base_url + "/contact> Contact </a><br>"
