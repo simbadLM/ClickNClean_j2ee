@@ -969,22 +969,14 @@ public class Db {
 
 	/*--------------------------------------READ MISSION BY OWNER------------------------------------------------------------- */
 
-<<<<<<< HEAD
-	public ArrayList<Mission> DAOReadMissionOwner(int ownerId)
-	throws InterruptedException, ExecutionException, Exception {
-		Statement st2 = conn.createStatement();
-		ArrayList<Mission> missions = new ArrayList<Mission>();
-		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner ="
-		               + ownerId;
-		// Property missionProperty = null;
-=======
+
 
 	public ArrayList<Mission> DAOReadMissionsOwner(int ownerId) throws InterruptedException, ExecutionException, Exception {
 		Statement  st2 = conn.createStatement();
 		ArrayList<Mission> missions = new ArrayList<Mission>();
 		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner =" + ownerId;
 		//Property missionProperty = null;
->>>>>>> 06e3e9c1a6eac634201d8b091ffd48e434a974c1
+
 
 		ResultSet rSet = st2.executeQuery(query);
 

@@ -36,35 +36,27 @@ public class OwnerMission extends HttpServlet {
         }
 
         try {
-<<<<<<< HEAD
             connection.DAOCreateNewMission(property, date);
-            //TODO: Avert user mission has been created successfully
+            session.setAttribute("missionCreation", "succed");
         } catch (Exception e) {
-            System.err.println("Failed to create a mission with : \n"
+            System.out.println("Failed to create a mission with : \n"
                                + "property n° " + propertyId
                                + "\n date : " + date
                               );
-            //TODO: Avert user that the mission wouldn't be created
-            return;
-        }
-=======
-			connection.DAOCreateNewMission(property, date);
-            session.setAttribute("missionCreation", "succed");
-		} catch (Exception e) {
-			System.out.println("Failed to create a mission with : \n"
-                + "property n° "+ propertyId 
-                + "\n date : " + date     
-            );
             session.setAttribute("missionCreation", "failed");
             response.sendRedirect(request.getContextPath() + "/OwnerMainController");
-		}
+        }
         String dateDisplay = (
-            Integer.toString(date.getDayOfMonth()) + "/"
-            + Integer.toString(date.getMonthValue()) + "/"   
-            + Integer.toString(date.getYear())
-        );
+                                 Integer.toString(date.getDayOfMonth()) + "/"
+                                 + Integer.toString(date.getMonthValue()) + "/"
+                                 + Integer.toString(date.getYear())
+                             );
         session.setAttribute("dateMission", dateDisplay);
->>>>>>> 06e3e9c1a6eac634201d8b091ffd48e434a974c1
         response.sendRedirect(request.getContextPath() + "/OwnerMainController");
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }
