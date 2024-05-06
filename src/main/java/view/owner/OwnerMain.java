@@ -2,6 +2,7 @@ package view.owner;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,6 @@ import model.Property;
 @WebServlet(name = "OwnerMain", urlPatterns = {"/ownerHome"})
 public class OwnerMain extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -25,6 +25,7 @@ public class OwnerMain extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(
             Page.TopPage(request, response)
+            + missionCreatedMessage(request, response)
             + "<section class='sec1owner'>"
             +   "<div>"
             +       "<h2 class='sec1title'>DÉPOSEZ VOTRE MÉNAGE PONCTUEL</h2>"
@@ -32,7 +33,7 @@ public class OwnerMain extends HttpServlet {
             +   "<div id='createMission'>"
             +       "<form method='post' action='http://localhost:9090/clickNclean_j2ee/ownerMission'>"
             +           selectProperties(request, response)
-            +           "<input type='date' name='date'>"
+            +           "<input type='date' name='date' required>"
             +           "<input class='button' type='submit' value='CLICK & CLEAN'>"
             +       "</form>"
             +   "</div>"
@@ -67,21 +68,38 @@ public class OwnerMain extends HttpServlet {
         );
     }
 
+    public String missionCreatedMessage(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String date = "";
+        String message = "";
+
+        if (session.getAttribute("dateMission") != null) date = (String)session.getAttribute("dateMission");
+        if (session.getAttribute("missionCreation") != null && session.getAttribute("missionCreation").equals("succed")) {
+            message = ("<h3 id='mission1'>Votre mission du " + date + " a été publiée avec succès</h3>");
+            session.removeAttribute("dateMission");
+            session.removeAttribute("missionCreation");
+        }
+        else if (session.getAttribute("missionCreation") != null && session.getAttribute("missionCreation").equals("failed")) {
+            message = ("<h3 id='mission0'>Échec lors de la création de la mission du " + date + ", veuillez "
+                +" réessayer.</h3>");
+            session.removeAttribute("dateMission");
+            session.removeAttribute("missionCreation");
+        }
+        return message;
+    }
+
     public String selectProperties(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         ArrayList<Property> properties = (ArrayList<Property>)session.getAttribute("properties");
         String propertiesString = (
-
             "<select class='inputFieldProp' name='property' required onchange='addProp(value);'>"
             +   "<option value='' >--Choix des propriétés--</option>"
         );
 
-
         for (Property currentPro : properties) {
-
-            String display = "<option value ='"+ properties.indexOf(currentPro)+ "' >" +currentPro.getPropertyAddress().asString()
+            String display = "<option value ='"+ currentPro.getPropertyId() + "' >" +currentPro.getPropertyAddress().asString()
                 + "</option>";
             propertiesString += display;   
         }
