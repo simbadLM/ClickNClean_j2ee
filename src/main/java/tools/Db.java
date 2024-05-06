@@ -586,23 +586,25 @@ public class Db {
 
 	/*--------------------------------------ADD A CLEANER (and User)---------------------------------------------------------- */
 
-	public int DAOAddCleaner(String name,
-	                         String pwd,
-	                         String surname,
-	                         String email,
-	                         String phoneN,
-	                         LocalDate birthDate,
-	                         boolean isSuspended,
-	                         Address departureAddress,
-	                         int kmRange,
-	                         int hourlyRate,
-	                         String bio,
-	                         String photoIdentity,
-	                         String motivation,
-	                         CleanerExperience experience,
-	                         boolean isConfirmed,
-	                         String photoProfile,
-	                         String photoLive) {
+	public int DAOAddCleaner(
+	    String name,
+	    String pwd,
+	    String surname,
+	    String email,
+	    String phoneN,
+	    LocalDate birthDate,
+	    boolean isSuspended,
+	    Address departureAddress,
+	    int kmRange,
+	    int hourlyRate,
+	    String bio,
+	    String photoIdentity,
+	    String motivation,
+	    CleanerExperience experience,
+	    boolean isConfirmed,
+	    String photoProfile,
+	    String photoLive
+	) {
 		int cleanerID = DAOAddUser(name, pwd, surname, email, phoneN, birthDate, isSuspended, UserStatus.CLEANER);
 		try {
 			String strQuery = "INSERT INTO `cleaner`"
