@@ -507,7 +507,7 @@ public class Db {
 		Property missionProperty = null;
 
 		ResultSet rSet2 = st2.executeQuery(query);
-		if (rSet2.next()) {
+		while (rSet2.next()) {
 			ArrayList<Property> propList = DAOReadOwnerProperties(rSet2.getInt("id_owner"));
 			for (Property currentProp : propList) {
 				if (currentProp.getPropertyId() == rSet2.getInt("id_property")) {
@@ -528,7 +528,6 @@ public class Db {
 			    rSet2.getInt("id_owner"),
 			    rSet2.getInt("id_cleaner"),
 			    MissionStatus.fromInt(rSet2.getInt("state")));
-			rSet2.close();
 			missions.add(mission);
 		}
 		rSet2.close();
@@ -587,23 +586,25 @@ public class Db {
 
 	/*--------------------------------------ADD A CLEANER (and User)---------------------------------------------------------- */
 
-	public int DAOAddCleaner(String name,
-	                         String pwd,
-	                         String surname,
-	                         String email,
-	                         String phoneN,
-	                         LocalDate birthDate,
-	                         boolean isSuspended,
-	                         Address departureAddress,
-	                         int kmRange,
-	                         int hourlyRate,
-	                         String bio,
-	                         String photoIdentity,
-	                         String motivation,
-	                         CleanerExperience experience,
-	                         boolean isConfirmed,
-	                         String photoProfile,
-	                         String photoLive) {
+	public int DAOAddCleaner(
+	    String name,
+	    String pwd,
+	    String surname,
+	    String email,
+	    String phoneN,
+	    LocalDate birthDate,
+	    boolean isSuspended,
+	    Address departureAddress,
+	    int kmRange,
+	    int hourlyRate,
+	    String bio,
+	    String photoIdentity,
+	    String motivation,
+	    CleanerExperience experience,
+	    boolean isConfirmed,
+	    String photoProfile,
+	    String photoLive
+	) {
 		int cleanerID = DAOAddUser(name, pwd, surname, email, phoneN, birthDate, isSuspended, UserStatus.CLEANER);
 		try {
 			String strQuery = "INSERT INTO `cleaner`"
@@ -969,22 +970,14 @@ public class Db {
 
 	/*--------------------------------------READ MISSION BY OWNER------------------------------------------------------------- */
 
-<<<<<<< HEAD
-	public ArrayList<Mission> DAOReadMissionOwner(int ownerId)
-	throws InterruptedException, ExecutionException, Exception {
-		Statement st2 = conn.createStatement();
-		ArrayList<Mission> missions = new ArrayList<Mission>();
-		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner ="
-		               + ownerId;
-		// Property missionProperty = null;
-=======
+
 
 	public ArrayList<Mission> DAOReadMissionsOwner(int ownerId) throws InterruptedException, ExecutionException, Exception {
 		Statement  st2 = conn.createStatement();
 		ArrayList<Mission> missions = new ArrayList<Mission>();
 		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner =" + ownerId;
 		//Property missionProperty = null;
->>>>>>> 06e3e9c1a6eac634201d8b091ffd48e434a974c1
+
 
 		ResultSet rSet = st2.executeQuery(query);
 

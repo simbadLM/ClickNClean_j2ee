@@ -16,6 +16,10 @@
 }
 /*---------------------------------------⬇-Base-⬇-------------------------------------------*/
 
+body {
+    margin: 0px;
+}
+
 html * {
     width: 100%;
     height: 100%;
@@ -84,7 +88,6 @@ ul {
     height: 100%;
     margin-bottom: 0px;
     margin-left: 0px;
-
 }
 
 header li {
@@ -402,7 +405,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     margin-top: -10px;
     z-index: 0;
- 
 }
 
 #mission0 {
@@ -485,13 +487,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /*------------------------------------⬇-Cleaner mission-⬇----------------------------------------*/
 
-
 .mission_list{
     border: 2px solid black;
     border-radius: 20px;
-    width: 80%;
+    width: 60%;
     align-items: center;
-    margin-left: 10%;
+    margin-left: 20%;
+    margin-bottom: 1%;
 }
 
 .mission_proposal{
@@ -513,5 +515,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*------------------------------------⬇-Cleaner profile-⬇----------------------------------------*/
 
 .profile_input{
+/*    background-color: red;*/
+/*    border: 2px solid red;*/
+}
+
+td:nth-child(2){
+    width: 70%;
+}
+
+td:nth-child(1).profile_input{
+/*    border: 1px solid blue;*/
+/*    width: 7%;*/
+    width: auto;
+}
+
+table.profile_input, input[type="submit"].profile_input{
+    margin-left: 20%;
     width: 60%;
+}
+
+td{
+/*    line-height: 20px;*/
+    vertical-align: top;
+    padding-bottom: 1%;
+}
+
+input[type="submit"].profile_input {
+    margin-top: 1%;
+}
+
+option[selected]{
+    background-color: darkgray;
 }

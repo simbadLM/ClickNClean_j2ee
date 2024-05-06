@@ -20,14 +20,14 @@ import tools.Db;
 
 @WebServlet(name = "ownerFetchMission", urlPatterns = {"/ownerFetchMissions"})
 public class OwnerFetchMissions extends HttpServlet {
-   
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         System.out.println("OwnerFetchMissions requested !");
         HttpSession session = request.getSession();
 
-        int ownerId = ((Owner)session.getAttribute("user")).getOwnerID();
+        int ownerId = ((Owner)session.getAttribute("user")).getOwnerId();
         ArrayList<Mission> missionList = new ArrayList<>();
 
         Db connection = new Db();
