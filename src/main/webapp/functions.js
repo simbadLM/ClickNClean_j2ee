@@ -1,4 +1,3 @@
-
 const connectForm = document.getElementById("connectionForm");
 
 
@@ -35,8 +34,6 @@ function registerCleaner() {
         +   "</form>"
         +   "</div>"
 };
-
-
 
 function registerOwner() {
     document.getElementById("mainContent").innerHTML = 

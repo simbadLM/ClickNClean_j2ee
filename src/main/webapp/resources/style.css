@@ -509,3 +509,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: auto;
     margin-left: auto;
 }
+
+/*------------------------------------⬇-Cleaner profile-⬇----------------------------------------*/
+
+.profile_input{
+    width: 60%;
+}
