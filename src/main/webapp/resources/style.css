@@ -16,6 +16,10 @@
 }
 /*---------------------------------------⬇-Base-⬇-------------------------------------------*/
 
+body {
+    margin: 0px;
+}
+
 html * {
     width: 100%;
     height: 100%;
@@ -84,7 +88,6 @@ ul {
     height: 100%;
     margin-bottom: 0px;
     margin-left: 0px;
-
 }
 
 header li {
@@ -485,13 +488,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /*------------------------------------⬇-Cleaner mission-⬇----------------------------------------*/
 
-
 .mission_list{
     border: 2px solid black;
     border-radius: 20px;
-    width: 80%;
+    width: 60%;
     align-items: center;
-    margin-left: 10%;
+    margin-left: 20%;
+    margin-bottom: 1%;
 }
 
 .mission_proposal{
@@ -514,4 +517,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .profile_input{
     width: 60%;
+/*    background-color: red;*/
+/*    border: 2px solid red;*/
+}
+
+td:nth-child(1){
+    width: 10%;
 }
