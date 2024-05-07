@@ -18,7 +18,7 @@ import tools.Db;
 
 @WebServlet(name = "ownerFetchMission", urlPatterns = {"/ownerFetchMissions"})
 public class OwnerFetchMissions extends HttpServlet {
-   
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -28,6 +28,7 @@ public class OwnerFetchMissions extends HttpServlet {
         int ownerId = ((Owner)session.getAttribute("user")).getOwnerId();
         int missionId = -1;
         int cleanerId = -1;
+
         ArrayList<Mission> missionList = new ArrayList<>();
         
         if (request.getParameter("missionId") != null) {

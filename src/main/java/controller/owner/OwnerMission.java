@@ -17,7 +17,7 @@ import tools.Db;
 
 @WebServlet(name = "ownerMission", urlPatterns = {"/ownerMission"})
 public class OwnerMission extends HttpServlet {
-   
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -32,26 +32,31 @@ public class OwnerMission extends HttpServlet {
         try {
             property = connection.DAOReadProperty(propertyId);
         } catch (Exception e) {
-            System.err.println("Failed to read property for property's id : " + propertyId + "due to : " + e);
+            System.err.println("Failed to read property for property's id : " + propertyId + " due to : " + e);
         }
-       
+
         try {
-			connection.DAOCreateNewMission(property, date);
+            connection.DAOCreateNewMission(property, date);
             session.setAttribute("missionCreation", "succed");
-		} catch (Exception e) {
-			System.out.println("Failed to create a mission with : \n"
-                + "property n° "+ propertyId 
-                + "\n date : " + date     
-            );
+        } catch (Exception e) {
+            System.out.println("Failed to create a mission with : \n"
+                               + "property n° " + propertyId
+                               + "\n date : " + date
+                              );
             session.setAttribute("missionCreation", "failed");
             response.sendRedirect(request.getContextPath() + "/OwnerMainController");
-		}
+        }
         String dateDisplay = (
-            Integer.toString(date.getDayOfMonth()) + "/"
-            + Integer.toString(date.getMonthValue()) + "/"   
-            + Integer.toString(date.getYear())
-        );
+                                 Integer.toString(date.getDayOfMonth()) + "/"
+                                 + Integer.toString(date.getMonthValue()) + "/"
+                                 + Integer.toString(date.getYear())
+                             );
         session.setAttribute("dateMission", dateDisplay);
         response.sendRedirect(request.getContextPath() + "/OwnerMainController");
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

@@ -66,7 +66,6 @@ public class CleanerMainController extends HttpServlet {
                 }
             }
             return false;
-
         });
 
         System.out.println("Writing " + missions.size() + " missions");
@@ -86,7 +85,6 @@ public class CleanerMainController extends HttpServlet {
 
             missions_display.add(new MissionDisplay(m.getMissionId(), m.getMissionDateTime() , owner.getSurname(), Math.abs(range), m.getDuration()));
         }
-
 
         session.setAttribute("missions", missions_display);
 

@@ -31,7 +31,7 @@ public class OwnerMain extends HttpServlet {
             +       "<h2 class='sec1title'>DÉPOSEZ VOTRE MÉNAGE PONCTUEL</h2>"
             +   "</div>"
             +   "<div id='createMission'>"
-            +       "<form method='post' action='http://localhost:9090/clickNclean_j2ee/ownerMission'>"
+            +       "<form method='POST' action='http://localhost:9090/clickNclean_j2ee/ownerMission'>"
             +           selectProperties(request, response)
             +           "<input type='date' name='date' required>"
             +           "<input class='button' type='submit' value='CLICK & CLEAN'>"
@@ -64,7 +64,7 @@ public class OwnerMain extends HttpServlet {
             +       "<img id='cleaner_pic' src='./resources/cleaner_pic.png'>"
             +   "</div>"
             + "</section>"
-            +Page.BottomPage(response)
+            + Page.BottomPage(response)
         );
     }
 
@@ -78,10 +78,9 @@ public class OwnerMain extends HttpServlet {
             message = ("<h3 id='mission1'>Votre mission du " + date + " a été publiée avec succès</h3>");
             session.removeAttribute("dateMission");
             session.removeAttribute("missionCreation");
-        }
-        else if (session.getAttribute("missionCreation") != null && session.getAttribute("missionCreation").equals("failed")) {
+        } else if (session.getAttribute("missionCreation") != null && session.getAttribute("missionCreation").equals("failed")) {
             message = ("<h3 id='mission0'>Échec lors de la création de la mission du " + date + ", veuillez "
-                +" réessayer.</h3>");
+                       + " réessayer.</h3>");
             session.removeAttribute("dateMission");
             session.removeAttribute("missionCreation");
         }
@@ -94,14 +93,14 @@ public class OwnerMain extends HttpServlet {
         @SuppressWarnings("unchecked")
         ArrayList<Property> properties = (ArrayList<Property>)session.getAttribute("properties");
         String propertiesString = (
-            "<select class='inputFieldProp' name='property' required onchange='addProp(value);'>"
-            +   "<option value='' >--Choix des propriétés--</option>"
-        );
+                                      "<select class='inputFieldProp' name='property' required onchange='addProp(value);'>"
+                                      +   "<option value='' >--Choix des propriétés--</option>"
+                                  );
 
         for (Property currentPro : properties) {
-            String display = "<option value ='"+ currentPro.getPropertyId() + "' >" +currentPro.getPropertyAddress().asString()
-                + "</option>";
-            propertiesString += display;   
+            String display = "<option value ='" + currentPro.getPropertyId() + "' >" + currentPro.getPropertyAddress().asString()
+                             + "</option>";
+            propertiesString += display;
         }
         return (
                    propertiesString

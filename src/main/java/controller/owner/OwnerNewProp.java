@@ -14,7 +14,7 @@ import tools.Db;
 
 @WebServlet(name = "ownerNewProp", urlPatterns = {"/ownerNewProp"})
 public class OwnerNewProp extends HttpServlet {
-   
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {

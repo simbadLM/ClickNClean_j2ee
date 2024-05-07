@@ -48,12 +48,10 @@ public class Db {
 		this.strClassName = "com.mysql.cj.jdbc.Driver";
 		this.dbName = "click_n_clean";
 
-
 		this.login = "root";
-		this.password = "root";
+		this.password = "";
 
-
-		 int port = 8889; // Mamp
+		// int port = 8889; // Mamp
 
 		//int port = 3306; // Laragon
 
@@ -248,7 +246,6 @@ public class Db {
 
 		throw new Exception("Could not find any owner with the given id");
 	}
-
 
 	public ArrayList<Integer> DAOListCleaners()
 	throws Exception {
@@ -470,7 +467,6 @@ public class Db {
 		return new Planning(slots);
 	}
 
-
 	public Dispute DAOReadDispute(int disputeId) throws Exception {
 		String query = "SELECT *, "
 		               + "(SELECT CONCAT(surname,' ',name) "
@@ -506,12 +502,12 @@ public class Db {
 	public ArrayList<Mission> DAOReadMissions()
 	throws InterruptedException, ExecutionException, Exception {
 		ArrayList<Mission> missions = new ArrayList<Mission>();
-		Statement  st2 = conn.createStatement();
+		Statement st2 = conn.createStatement();
 		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property";
 		Property missionProperty = null;
 
 		ResultSet rSet2 = st2.executeQuery(query);
-		if (rSet2.next()) {
+		while (rSet2.next()) {
 			ArrayList<Property> propList = DAOReadOwnerProperties(rSet2.getInt("id_owner"));
 			for (Property currentProp : propList) {
 				if (currentProp.getPropertyId() == rSet2.getInt("id_property")) {
@@ -519,8 +515,8 @@ public class Db {
 					break;
 				}
 			}
-			if (missionProperty == null)  throw new Exception("The property of the mission is not in owner's properties list");
-
+			if (missionProperty == null)
+				throw new Exception("The property of the mission is not in owner's properties list");
 
 			Mission mission = new Mission(
 			    rSet2.getInt("id_mission"),
@@ -532,7 +528,6 @@ public class Db {
 			    rSet2.getInt("id_owner"),
 			    rSet2.getInt("id_cleaner"),
 			    MissionStatus.fromInt(rSet2.getInt("state")));
-			rSet2.close();
 			missions.add(mission);
 		}
 		rSet2.close();
@@ -540,8 +535,9 @@ public class Db {
 	}
 
 	public Mission DAOReadMission(int missionId) throws InterruptedException, ExecutionException, Exception {
-		Statement  st2 = conn.createStatement();
-		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE id_mission =" + missionId;
+		Statement st2 = conn.createStatement();
+		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE id_mission ="
+		               + missionId;
 		Property missionProperty = null;
 
 		ResultSet rSet2 = st2.executeQuery(query);
@@ -553,8 +549,8 @@ public class Db {
 					break;
 				}
 			}
-			if (missionProperty == null)  throw new Exception("The property of the mission is not in owner's properties list");
-
+			if (missionProperty == null)
+				throw new Exception("The property of the mission is not in owner's properties list");
 
 			Mission mission = new Mission(
 			    rSet2.getInt("id_mission"),
@@ -590,23 +586,25 @@ public class Db {
 
 	/*--------------------------------------ADD A CLEANER (and User)---------------------------------------------------------- */
 
-	public int DAOAddCleaner(String name,
-	                         String pwd,
-	                         String surname,
-	                         String email,
-	                         String phoneN,
-	                         LocalDate birthDate,
-	                         boolean isSuspended,
-	                         Address departureAddress,
-	                         int kmRange,
-	                         int hourlyRate,
-	                         String bio,
-	                         String photoIdentity,
-	                         String motivation,
-	                         CleanerExperience experience,
-	                         boolean isConfirmed,
-	                         String photoProfile,
-	                         String photoLive) {
+	public int DAOAddCleaner(
+	    String name,
+	    String pwd,
+	    String surname,
+	    String email,
+	    String phoneN,
+	    LocalDate birthDate,
+	    boolean isSuspended,
+	    Address departureAddress,
+	    int kmRange,
+	    int hourlyRate,
+	    String bio,
+	    String photoIdentity,
+	    String motivation,
+	    CleanerExperience experience,
+	    boolean isConfirmed,
+	    String photoProfile,
+	    String photoLive
+	) {
 		int cleanerID = DAOAddUser(name, pwd, surname, email, phoneN, birthDate, isSuspended, UserStatus.CLEANER);
 		try {
 			String strQuery = "INSERT INTO `cleaner`"
@@ -650,8 +648,7 @@ public class Db {
 	    int hourlyRate,
 	    String biography,
 	    String motivation,
-	    CleanerExperience experience
-	) throws Exception {
+	    CleanerExperience experience) throws Exception {
 		String query = "SELECT * FROM cleaner WHERE id_cleaner = " + cleanerId;
 		Statement st = this.conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
@@ -772,7 +769,6 @@ public class Db {
 		}
 	}
 
-
 	public void disconnect() {
 		try {
 			conn.close();
@@ -814,7 +810,7 @@ public class Db {
 		return id;
 	}
 
-	public void DAOCreateNewMissionProposal(int missionId, int cleanerId, LocalDateTime hour ) throws SQLException {
+	public void DAOCreateNewMissionProposal(int missionId, int cleanerId, LocalDateTime hour) throws SQLException {
 		LocalDateTime startingTime = hour.withHour(15).withMinute(0).withSecond(0).withNano(0);
 
 		String strQuery = "INSERT INTO `mission_proposal` "
@@ -984,11 +980,13 @@ public class Db {
 	/*--------------------------------------READ MISSION BY OWNER------------------------------------------------------------- */
 
 
+
 	public ArrayList<Mission> DAOReadMissionsOwner(int ownerId) throws InterruptedException, ExecutionException, Exception {
 		Statement  st2 = conn.createStatement();
 		ArrayList<Mission> missions = new ArrayList<Mission>();
 		String query = "SELECT * FROM mission JOIN property ON mission.id_property = property.id_property WHERE mission.id_owner =" + ownerId;
 		//Property missionProperty = null;
+
 
 		ResultSet rSet = st2.executeQuery(query);
 
@@ -1002,29 +1000,29 @@ public class Db {
 				}
 			}
 
+			if (missionProperty == null)
+				throw new Exception("The property of the mission is not in owner's properties list");
 
-			if (missionProperty == null)  throw new Exception("The property of the mission is not in owner's properties list");
+			// while (rSet.next()) {
 
-			//while (rSet.next()) {
-
-			Mission mission = new Mission(rSet.getInt("id_mission"),
-			                              missionProperty,
-			                              rSet.getTimestamp("date_start").toLocalDateTime(),
-			                              rSet.getDouble("duration"),
-			                              rSet.getDouble("cost"),
-			                              rSet.getDouble("commission"),
-			                              rSet.getInt("id_owner"),
-			                              rSet.getInt("id_cleaner"),
-			                              MissionStatus.fromInt(rSet.getInt("state"))
-			                             );
+			Mission mission = new Mission(
+			    rSet.getInt("id_mission"),
+			    missionProperty,
+			    rSet.getTimestamp("date_start").toLocalDateTime(),
+			    rSet.getDouble("duration"),
+			    rSet.getDouble("cost"),
+			    rSet.getDouble("commission"),
+			    rSet.getInt("id_owner"),
+			    rSet.getInt("id_cleaner"),
+			    MissionStatus.fromInt(rSet.getInt("state"))
+			);
 			missions.add(mission);
 		}
 		rSet.close();
 
-		//}
+		// }
 		return missions;
 	}
-
 
 	public void DAOOwnerMissionSetCleaner(int missionId, int cleanerId) throws Exception {
 		String strQuery = "UPDATE mission SET id_cleaner = ?, state = ? "
@@ -1065,10 +1063,12 @@ public class Db {
 	} */
 
 	/*--------------------------------------READ CLEANER IN MISSION PROPOSAL------------------------------------------------------------- */
-	public ArrayList<Cleaner> DAOReadMissionProposal(int missionId) throws InterruptedException, ExecutionException, Exception {
+	public ArrayList<Cleaner> DAOReadMissionProposal(int missionId)
+	throws InterruptedException, ExecutionException, Exception {
 		Statement st = conn.createStatement();
 		ArrayList<Cleaner> cleaners = new ArrayList<Cleaner>();
-		String query = "SELECT * FROM mission_proposal JOIN user ON mission_proposal.id_cleaner = user.id_user JOIN cleaner ON mission_proposal.id_cleaner = cleaner.id_cleaner JOIN mission ON mission.id_mission = mission_proposal.id_mission WHERE mission.id_mission=" + missionId + ";";
+		String query = "SELECT * FROM mission_proposal JOIN user ON mission_proposal.id_cleaner = user.id_user JOIN cleaner ON mission_proposal.id_cleaner = cleaner.id_cleaner JOIN mission ON mission.id_mission = mission_proposal.id_mission WHERE mission.id_mission="
+		               + missionId + ";";
 
 		ResultSet rSet = st.executeQuery(query);
 		// Planning planning = this.DAOReadPlanning(rSet.getInt("id_user"));
@@ -1097,8 +1097,7 @@ public class Db {
 			    rSet.getDate("birth_date").toLocalDate(),
 			    rSet.getBoolean("suspended"),
 			    new ArrayList<Integer>(), // reviews,
-			    new Planning(new ArrayList<TimeSlot>())
-			);
+			    new Planning(new ArrayList<TimeSlot>()));
 
 			cleaners.add(cleaner);
 		}
@@ -1109,5 +1108,3 @@ public class Db {
 	}
 
 }
-
-
