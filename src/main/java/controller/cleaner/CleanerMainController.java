@@ -42,7 +42,9 @@ public class CleanerMainController extends HttpServlet {
 
         System.out.println("Fetched " + missions.size() + " missions");
 
-        missions.removeIf(m -> (m.getState() != MissionStatus.PUBLISHED || m.getMissionDateTime().isBefore(LocalDateTime.now())));
+        missions.removeIf(m -> (m.getState() != MissionStatus.PUBLISHED 
+            && m.getState() != MissionStatus.PROPOSED
+            || m.getMissionDateTime().isBefore(LocalDateTime.now())));
 
         missions.removeIf(m -> {
             return cleaner.getKmRange() < Math.abs(m.getProperty().getPropertyAddress().calculateDistance(cleaner.getDepartureAddress()));
@@ -63,7 +65,6 @@ public class CleanerMainController extends HttpServlet {
                     return true;
                 }
             }
-
             return false;
         });
 

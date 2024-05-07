@@ -410,7 +410,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #mission0 {
     background-color: rgb(128, 3, 3);
 }
+/*------------------------------------⬇-Owner Mission-⬇----------------------------------------*/
 
+.missionContainer {
+    width: 50%;
+    height: 90%;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    font-family: 'sources sans pro', serif;
+    display: grid;
+    margin-top: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+    top: -600px;
+}
+
+.missionField {
+    font-size: 1.1em;
+    border-bottom: 1px solid #B6B3B4;
+    padding-top: 8px;
+    margin: 0px;
+}
 /*------------------------------------⬇-Dropdown Menu-⬇----------------------------------------*/
 
 #dropdown_menu_container{

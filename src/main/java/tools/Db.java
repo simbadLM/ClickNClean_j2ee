@@ -53,7 +53,7 @@ public class Db {
 
 		// int port = 8889; // Mamp
 
-		int port = 3306; // Laragon
+		//int port = 3306; // Laragon
 
 		this.strUrl = "jdbc:mysql://localhost:" + port + "/" + dbName
 		              + "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Paris";
@@ -825,6 +825,15 @@ public class Db {
 
 		pstmt.executeUpdate();
 
+		String sql = "UPDATE mission SET state = ? "
+		                  + "WHERE id_mission = ? ;";
+
+		PreparedStatement pstmt2 = conn.prepareStatement(sql);
+		pstmt2.setInt(1, MissionStatus.PROPOSED.asInt());
+		pstmt2.setInt(2, missionId) ;
+
+		pstmt2.executeUpdate();
+
 	}
 
 	/*--------------------------------------TOOLS METHODS--------------------------------------------------------------------- */
@@ -1016,8 +1025,25 @@ public class Db {
 	}
 
 	public void DAOOwnerMissionSetCleaner(int missionId, int cleanerId) throws Exception {
-		String strQuery = "UPDATE mission SET id_cleaner = ?, "
-		                  + "state = ? "
+		String strQuery = "UPDATE mission SET id_cleaner = ?, state = ? "
+		                  + "WHERE id_mission = ?";
+
+		try (PreparedStatement preparedStatement = conn.prepareStatement(strQuery)) {
+			preparedStatement.setInt(1, cleanerId);
+			preparedStatement.setInt(2, MissionStatus.CONFIRMED_AND_PAYED.asInt());
+			preparedStatement.setInt(3, missionId);
+			preparedStatement.executeUpdate();
+		}
+
+		String sql = "DELETE FROM mission_proposal WHERE id_mission = ?";
+		try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+			preparedStatement.setInt(1, missionId);
+			preparedStatement.executeUpdate();
+		}
+	}
+
+/* 	public void DAOSetMissionStatus(int missionId, MissionStatus status) throws Exception {
+		String strQuery = "UPDATE mission SET state = ?, "
 		                  + "WHERE id_mission = ?";
 
 		try (PreparedStatement preparedStatement = conn.prepareStatement(strQuery)) {
@@ -1034,7 +1060,7 @@ public class Db {
 
 			preparedStatement.executeUpdate();
 		}
-	}
+	} */
 
 	/*--------------------------------------READ CLEANER IN MISSION PROPOSAL------------------------------------------------------------- */
 	public ArrayList<Cleaner> DAOReadMissionProposal(int missionId)
@@ -1045,7 +1071,6 @@ public class Db {
 		               + missionId + ";";
 
 		ResultSet rSet = st.executeQuery(query);
-
 		// Planning planning = this.DAOReadPlanning(rSet.getInt("id_user"));
 
 		while (rSet.next()) {
