@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import components.Page;
 import model.Cleaner;
-import model.Mission;
-import model.MissionStatus;
-
 
 @WebServlet(name = "OwnerSeeMissionProposals", urlPatterns = {"/owner-pick-a-cleaner"})
 public class OwnerSeeMissionProposals extends HttpServlet {

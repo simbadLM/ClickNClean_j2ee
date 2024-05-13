@@ -1,9 +1,6 @@
 package controller.cleaner;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import components.Page;
 import tools.Db;
-import tools.MissionDisplay;
 import model.Cleaner;
 import model.Mission;
-import model.MissionStatus;
-import model.Owner;
 
 @WebServlet(name = "CleanerRegisterMissionController", urlPatterns = { "/CleanerRegisterMissionController" })
 public class CleanerMissionRegisterController extends HttpServlet {

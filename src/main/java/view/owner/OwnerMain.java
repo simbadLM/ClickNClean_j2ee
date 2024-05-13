@@ -2,7 +2,6 @@ package view.owner;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Owner;
-import model.Cleaner;
 import model.Mission;
 import model.MissionStatus;
 import tools.Db;

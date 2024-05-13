@@ -1,9 +1,6 @@
 package view.admin;
 
-import org.javatuples.Pair;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -15,12 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import components.Page;
 import model.Cleaner;
-import model.Mission;
-import model.Dispute;
+//import model.Mission;
+//import model.Dispute;
 
 @WebServlet(name = "AdminMain", urlPatterns = { "/adminHome" })
 public class AdminMain extends HttpServlet {
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -28,8 +26,9 @@ public class AdminMain extends HttpServlet {
         HttpSession session = request.getSession();
 
         ArrayList<Cleaner> cleanerToConfirm = (ArrayList<Cleaner>) session.getAttribute("cleanerToConfirm");
-        ArrayList<Pair<Dispute, Mission>> disputes = (ArrayList<Pair<Dispute, Mission>>) session
-                .getAttribute("dispute");
+        //ArrayList<Pair<Dispute, Mission>> disputes = (ArrayList<Pair<Dispute, Mission>>) session
+        //        .getAttribute("dispute");
+        // ----------Keep that so the feature of resolving disputes might be implemented later -----------
 
         System.out.println("We have " + cleanerToConfirm.size() + " cleaners to confirm");
 

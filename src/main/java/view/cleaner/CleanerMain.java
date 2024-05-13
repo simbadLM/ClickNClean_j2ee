@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
 import components.Page;
-import model.Mission;
-import model.Property;
 import tools.MissionDisplay;
 
 @WebServlet(name = "CleanerMain", urlPatterns = {"/cleanerHome"})
 public class CleanerMain extends HttpServlet {
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
