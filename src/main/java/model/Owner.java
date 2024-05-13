@@ -55,7 +55,7 @@ public class Owner extends User {
 		this.status = UserStatus.OWNER;
 	}
 
-	public int getOwnerID() {
+	public int getOwnerId() {
 		return ownerID;
 	}
 

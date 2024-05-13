@@ -27,9 +27,9 @@ public class Address {
         System.out.println("Querying adress: " + query);
         // create a request
         HttpRequest request = HttpRequest.newBuilder(
-                          URI.create("https://api-adresse.data.gouv.fr/search/?q=" + query))
-                      .header("accept", "application/json")
-                      .build();
+                                  URI.create("https://api-adresse.data.gouv.fr/search/?q=" + query))
+                              .header("accept", "application/json")
+                              .build();
 
         // use the client to send the request
         CompletableFuture<HttpResponse<Supplier<APOD>>> responseFuture = client.sendAsync(request, new JsonBodyHandler<>(APOD.class));
@@ -69,7 +69,7 @@ public class Address {
         return this.display;
     }
 
-    // Result is in meters
+    // Result is in kilometers
     public double calculateDistance(Address target) {
         final double EARTH_RADIUS = 6371.0;
 
@@ -82,7 +82,7 @@ public class Address {
         double y = (lat2Rad - lat1Rad);
         double distance = Math.sqrt(x * x + y * y) * EARTH_RADIUS;
 
-        return distance * 1000;
+        return distance; // * 1000
     }
 
 

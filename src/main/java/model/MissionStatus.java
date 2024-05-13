@@ -49,6 +49,37 @@ public enum MissionStatus {
     public int asInt() {
         return this.status;
     }
+
+    public String asString() {
+        switch (this) {
+            case PUBLISHED:
+                return "Publiée";
+    
+            case PROPOSED:
+                return "Au moins un Cleaner a fait une proposition de service";
+    
+            case CONFIRMED_AND_PAYED:
+                return "Confirmé et payé";
+    
+            case CLEANER_VALIDATED:
+                return "Terminée par le Cleaner";
+    
+            case OWNER_VALIDATED:
+                return "Terminée par le Tidy-Seeker";
+    
+            case OPENED_DISPUTE:
+                return "Litige ouvert sur la mission";
+    
+            case RESOLVED_DISPUTE_CLEANER_IS_RIGHT:
+                return "Litige résolu en faveur du Cleaner";
+    
+            case RESOLVED_DISPUTE_OWNER_IS_RIGHT:
+                return "Litige résolu en faveur du Owner";
+    
+            default:
+                return " ";
+            }
+    }
 }
 
 

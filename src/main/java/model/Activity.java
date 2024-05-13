@@ -9,7 +9,6 @@ public class Activity {
     private int missionId;
     private int disputeId;
     private int adminId;
-    private int targetId;
 
     public Activity(
         int activityId,
@@ -31,7 +30,6 @@ public class Activity {
         this.missionId = missionId;
         this.disputeId = disputeId;
         this.adminId = adminId;
-        this.targetId = targetId;
     }
 
     public int getActivityId() {

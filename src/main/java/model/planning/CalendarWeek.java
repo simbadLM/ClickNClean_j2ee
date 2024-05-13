@@ -1,5 +1,4 @@
 package model.planning;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CalendarWeek {

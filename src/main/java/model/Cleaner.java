@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import model.planning.Planning;
-import tools.Db;
 
 public class Cleaner extends User {
     private int cleanerId;
@@ -57,10 +56,7 @@ public class Cleaner extends User {
         this.profilePhoto = profilePhoto;
         this.motivation = motivation;
         this.experience = experience;
-
         this.confirmedId = confirmed;
-
-        this.reviews = reviews;
         this.planning = planning;
     }
 
