@@ -53,7 +53,7 @@ public class Db {
 
 		// int port = 8889; // Mamp
 
-		//int port = 3306; // Laragon
+		int port = 3306; // Laragon
 
 		this.strUrl = "jdbc:mysql://localhost:" + port + "/" + dbName
 		              + "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Paris";
@@ -685,7 +685,7 @@ public class Db {
 	    UserStatus status) throws Exception {
 		Statement st = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-		String query = "SELECT * FROM user WHERE  id_user = " + userId;
+		String query = "SELECT * FROM user WHERE id_user = " + userId;
 
 		Date sqlBirthDate = Date.valueOf(birthDate);
 
@@ -703,6 +703,7 @@ public class Db {
 				rSet.updateRow();
 			}
 		} catch (Exception e) {
+			st.close();
 			System.err.println("[ERROR] Failled to update User with id: " + userId + " due to : " + e);
 		}
 		st.close();
@@ -826,7 +827,7 @@ public class Db {
 		pstmt.executeUpdate();
 
 		String sql = "UPDATE mission SET state = ? "
-		                  + "WHERE id_mission = ? ;";
+		             + "WHERE id_mission = ? ;";
 
 		PreparedStatement pstmt2 = conn.prepareStatement(sql);
 		pstmt2.setInt(1, MissionStatus.PROPOSED.asInt());
@@ -1042,25 +1043,25 @@ public class Db {
 		}
 	}
 
-/* 	public void DAOSetMissionStatus(int missionId, MissionStatus status) throws Exception {
-		String strQuery = "UPDATE mission SET state = ?, "
-		                  + "WHERE id_mission = ?";
+	/* 	public void DAOSetMissionStatus(int missionId, MissionStatus status) throws Exception {
+			String strQuery = "UPDATE mission SET state = ?, "
+			                  + "WHERE id_mission = ?";
 
-		try (PreparedStatement preparedStatement = conn.prepareStatement(strQuery)) {
-			preparedStatement.setString(1, "" + cleanerId);
-			preparedStatement.setInt(2, MissionStatus.CLEANER_VALIDATED.asInt());
-			preparedStatement.setInt(3, missionId);
+			try (PreparedStatement preparedStatement = conn.prepareStatement(strQuery)) {
+				preparedStatement.setString(1, "" + cleanerId);
+				preparedStatement.setInt(2, MissionStatus.CLEANER_VALIDATED.asInt());
+				preparedStatement.setInt(3, missionId);
 
-			preparedStatement.executeUpdate();
-		}
+				preparedStatement.executeUpdate();
+			}
 
-		String sql = "DELETE FROM mission_proposal WHERE id_mission = ?";
-		try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-			preparedStatement.setString(1, "" + missionId);
+			String sql = "DELETE FROM mission_proposal WHERE id_mission = ?";
+			try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+				preparedStatement.setString(1, "" + missionId);
 
-			preparedStatement.executeUpdate();
-		}
-	} */
+				preparedStatement.executeUpdate();
+			}
+		} */
 
 	/*--------------------------------------READ CLEANER IN MISSION PROPOSAL------------------------------------------------------------- */
 	public ArrayList<Cleaner> DAOReadMissionProposal(int missionId)

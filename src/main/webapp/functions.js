@@ -18,7 +18,7 @@ function registerCleaner() {
         + "<input class='inputFieldRegC' type='text' name='postcode' placeholder='Code postal' required>"
         + "<input class='inputFieldRegC' type='text' name='city' placeholder='Ville' required>"
         + "<input class='inputFieldRegC' type='text' name='range' placeholder='Rayon de recherche en Km souhaité' required>"
-        + "<input class='inputFieldRegC' type='text' name='hourlyRange' placeholder='Tarif horaire' required>"
+        + "<input class='inputFieldRegC' type='text' name='hourlyRate' placeholder='Tarif horaire' required>"
         + "<textarea class='inputFieldRegC' name='bio' placeholder='Parlez de vous à vos clients' required></textarea>"
         + "<textarea class='inputFieldRegC' name='motiv' placeholder='Pour quelle raison vous inscrivez-vous ?' required></textarea>"
         + "<caption>Quel expérience avez-vous ?</caption>"

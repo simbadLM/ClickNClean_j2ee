@@ -26,19 +26,19 @@ import tools.Db;
 public class Register extends HttpServlet {
 
     @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String lastname = request.getParameter("lastname");
-		String firstname = request.getParameter("firstname");
-		String rawPwd = request.getParameter("rawPwd");
-		String rawConfirmPwd = request.getParameter("rawConfirmedPwd");
+        String firstname = request.getParameter("firstname");
+        String rawPwd = request.getParameter("rawPwd");
+        String rawConfirmPwd = request.getParameter("rawConfirmedPwd");
         String email = request.getParameter("mail");
         String phone = request.getParameter("phone");
-		LocalDate birth = LocalDate.parse(request.getParameter("birth"));
+        LocalDate birth = LocalDate.parse(request.getParameter("birth"));
 
-/*---------------------------------------⬇-Cleaner Registration-⬇-------------------------------------------*/
+        /*---------------------------------------⬇-Cleaner Registration-⬇-------------------------------------------*/
 
-        if(request.getParameter("status").equals("c")) {
+        if (request.getParameter("status").equals("c")) {
 
             String label = request.getParameter("label");
             String houseN = request.getParameter("houseN");
@@ -53,72 +53,72 @@ public class Register extends HttpServlet {
             int hourlyRate = Integer.parseInt(request.getParameter("hourlyRate").toString());
             CleanerExperience exp;
             int currentCleanerId = 0;
-    
+
             try {
-               exp = CleanerExperience
-                .fromInt(Integer.parseInt(request.getParameter("exp")));
+                exp = CleanerExperience
+                      .fromInt(Integer.parseInt(request.getParameter("exp")));
             } catch (Exception e) {
                 System.err.println("failed to set Cleaner Experience due to : " + e);
                 exp = CleanerExperience.NONE;
             }
-    
-                if (rawPwd.equals(rawConfirmPwd)) {
-                    Db connection = new Db();
-    
-                    Address address;
-                    try {
-                        address = new Address(houseN, label, postcode, city);
-                    } catch (Exception e) {
-                        // TODO: Show the user that there was an error with the address
-                        return;
-                    }
-                    try {
-                        currentCleanerId = connection.DAOAddCleaner(
-                            lastname,
-                            rawPwd,
-                            firstname,
-                            email,
-                            phone,
-                            birth,
-                            false,
-                            address,
-                            km,
-                            hourlyRate,
-                            bio,
-                            idPhoto,
-                            motivation,
-                            exp,
-                            false,
-                            photo,
-                            photoLive
-                        );
-            
-                    } catch (Exception e) {
-                        System.err.println("Failed to register Cleaner due to : " + e);
-                        // TODO: avert user failed to register cleaner
-                        return;
-                    }
-                    
-                    try {
-                        Cleaner currentCleaner = connection.DAOReadCleaner(currentCleanerId);
-                        connection.DAOaddActivity(ActivityType.WELCOME_CLEANER, currentCleanerId, null, null, null, null, null);
-                        connection.DAOaddActivity(ActivityType.CLEANER_WAITING_TO_BE_CONFIRMED, 1, null, currentCleanerId, null, null, null);
-                        session.setAttribute("user", currentCleaner);
-                        session.setAttribute("status", "owner");
-                        response.sendRedirect(request.getContextPath() + "/CleanerMain");
-                    } catch (Exception e) {
-                        System.err.println("Could not read newly created cleaner due to: " + e);
-                        return;
-                    }
-                    
+
+            if (rawPwd.equals(rawConfirmPwd)) {
+                Db connection = new Db();
+
+                Address address;
+                try {
+                    address = new Address(houseN, label, postcode, city);
+                } catch (Exception e) {
+                    // TODO: Show the user that there was an error with the address
+                    return;
                 }
-                //TODO : else avert pwd don't match
+                try {
+                    currentCleanerId = connection.DAOAddCleaner(
+                                           lastname,
+                                           rawPwd,
+                                           firstname,
+                                           email,
+                                           phone,
+                                           birth,
+                                           false,
+                                           address,
+                                           km,
+                                           hourlyRate,
+                                           bio,
+                                           idPhoto,
+                                           motivation,
+                                           exp,
+                                           false,
+                                           photo,
+                                           photoLive
+                                       );
+
+                } catch (Exception e) {
+                    System.err.println("Failed to register Cleaner due to : " + e);
+                    // TODO: avert user failed to register cleaner
+                    return;
+                }
+
+                try {
+                    Cleaner currentCleaner = connection.DAOReadCleaner(currentCleanerId);
+                    connection.DAOaddActivity(ActivityType.WELCOME_CLEANER, currentCleanerId, null, null, null, null, null);
+                    connection.DAOaddActivity(ActivityType.CLEANER_WAITING_TO_BE_CONFIRMED, 1, null, currentCleanerId, null, null, null);
+                    session.setAttribute("user", currentCleaner);
+                    session.setAttribute("status", "owner");
+                    response.sendRedirect(request.getContextPath() + "/CleanerMainController");
+                } catch (Exception e) {
+                    System.err.println("Could not read newly created cleaner due to: " + e);
+                    return;
+                }
+
+            }
+            //TODO : else avert pwd don't match
         }
-/*---------------------------------------⬇-Owner Registration-⬇-------------------------------------------*/
+        /*---------------------------------------⬇-Owner Registration-⬇-------------------------------------------*/
 
-        else if(request.getParameter("status").equals("o")) {
+        else if (request.getParameter("status").equals("o")) {
 
-            OwnerMotivation motiv; 
+            OwnerMotivation motiv;
             int currentOwnerId = 0;
 
             try {
@@ -131,29 +131,28 @@ public class Register extends HttpServlet {
                 Db connection = new Db();
                 try {
                     currentOwnerId = connection.DAOAddOwner(
-                        lastname, 
-                        rawPwd, 
-                        firstname, 
-                        email, 
-                        phone, 
-                        birth, 
-                        false, 
-                        motiv
-                    );
+                                         lastname,
+                                         rawPwd,
+                                         firstname,
+                                         email,
+                                         phone,
+                                         birth,
+                                         false,
+                                         motiv
+                                     );
                     Owner currentOwner = connection.DAOReadOwner(currentOwnerId);
                     session.setAttribute("user", currentOwner);
                     session.setAttribute("status", "owner");
                     response.sendRedirect(request.getContextPath() + "/OwnerMain");
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.err.println("Failed to register Cleaner due to : " + e);
                     // TODO: avert user failed to register Owner
                     return;
                 }
             }
-            // TODO : avert user pwd don't match 
-            
-            
+            // TODO : avert user pwd don't match
+
+
         }
     }
 
