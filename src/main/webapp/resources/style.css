@@ -356,6 +356,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-left: 20%;
 }
 
+#messageE5{
+    display: flex;
+}
+
+#cleanerAvg {
+    color: #11C0DE;
+}
+
 /*------------------------------------⬇-Adding Property-⬇----------------------------------------*/
 
 .sec1addProp {

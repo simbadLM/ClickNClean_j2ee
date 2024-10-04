@@ -527,7 +527,8 @@ public class Db {
 			    rSet2.getDouble("commission"),
 			    rSet2.getInt("id_owner"),
 			    rSet2.getInt("id_cleaner"),
-			    MissionStatus.fromInt(rSet2.getInt("state")));
+			    MissionStatus.fromInt(rSet2.getInt("state")),
+				rSet2.getInt("cleaner_proposal"));
 			missions.add(mission);
 		}
 		rSet2.close();
@@ -561,7 +562,8 @@ public class Db {
 			    rSet2.getDouble("commission"),
 			    rSet2.getInt("id_owner"),
 			    rSet2.getInt("id_cleaner"),
-			    MissionStatus.fromInt(rSet2.getInt("state")));
+				MissionStatus.fromInt(rSet2.getInt("state")),
+			    rSet2.getInt("cleaner_proposal"));
 			rSet2.close();
 			return mission;
 		}
@@ -975,7 +977,7 @@ public class Db {
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-	}
+	}//
 
 	/*--------------------------------------READ MISSION BY OWNER------------------------------------------------------------- */
 
@@ -1014,7 +1016,8 @@ public class Db {
 			    rSet.getDouble("commission"),
 			    rSet.getInt("id_owner"),
 			    rSet.getInt("id_cleaner"),
-			    MissionStatus.fromInt(rSet.getInt("state"))
+			    MissionStatus.fromInt(rSet.getInt("state")),
+				rSet.getInt("cleaner_proposal")
 			);
 			missions.add(mission);
 		}
@@ -1107,4 +1110,22 @@ public class Db {
 
 	}
 
+	public double DAOCleanerAmountAVG() throws Exception {
+		double average = 0;
+	
+		String strQuery = "SELECT AVG(cleaner_proposal) AS avg_cleaner_proposal "
+							+ "FROM mission "
+							+ "WHERE state NOT IN (1, 2);";
+	
+		try (PreparedStatement preparedStatement = conn.prepareStatement(strQuery);
+			 ResultSet resultSet = preparedStatement.executeQuery()) {
+			if (resultSet.next()) {
+				average = resultSet.getDouble("avg_cleaner_proposal");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new Exception("Database error: " + e.getMessage(), e);
+		}
+		return average;
+	}
 }

@@ -15,6 +15,7 @@ public class Mission {
     int cleanerId;
     ArrayList<Cleaner> cleanerList;
     MissionStatus state;
+    int cleanerProposal;
 
     public Mission(
         int missionId,
@@ -25,7 +26,8 @@ public class Mission {
         double commission,
         int ownerId,
         int cleanerId,
-        MissionStatus state
+        MissionStatus state,
+        int cleanerProposal
     ) {
         this.missionId = missionId;
         this.property = property;
@@ -36,10 +38,15 @@ public class Mission {
         this.ownerId = ownerId;
         this.cleanerId = cleanerId;
         this.state = state;
+        this.cleanerProposal = cleanerProposal;
     }
 
     public int getMissionId() {
         return missionId;
+    }
+
+    public int getCleanerProposal() {
+        return cleanerProposal;
     }
 
     public LocalDate getMissionDate() {

@@ -21,7 +21,12 @@ public class OwnerMain extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
+        double cleanerAvg = 0;
+
+        if (session.getAttribute("cleanerAvg") != null) cleanerAvg = (double)session.getAttribute("cleanerAvg");
+         
         out.println(
             Page.TopPage(request, response)
             + missionCreatedMessage(request, response)
@@ -41,6 +46,9 @@ public class OwnerMain extends HttpServlet {
             +   "<div>"
             +       "<div id=sec2owner_container>"
             +           "<div>"
+            +               "<div id='messageE5'>"
+            +                   "<h3><i>Grâce à ClickAndCleanWeb, </i><b id='cleanerAvg'>" + cleanerAvg + "</b> <i>cleaners en moyenne répondront à vos annonces de mission</i></h3>"
+            +               "</div>"
             +               "<h2>CLICK & CLEAN ?</h2>"
             +           "</div>"
             +           "<div>"

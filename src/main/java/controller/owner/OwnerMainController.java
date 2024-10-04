@@ -26,6 +26,16 @@ public class OwnerMainController extends HttpServlet {
         Db connection = new Db();
         ArrayList<Property> properties = new ArrayList<>();
         int ownerId = ((Owner)session.getAttribute("user")).getOwnerId();
+        double cleanerProposals = 0;
+
+        try {
+            cleanerProposals = connection.DAOCleanerAmountAVG();
+            session.setAttribute("cleanerAvg", cleanerProposals);
+            
+        } catch (Exception e) {
+            System.err.println("couldn't read cleaner average count due to : " + e);
+            return;
+        }
 
         try {
             properties = connection.DAOReadOwnerProperties(ownerId);
